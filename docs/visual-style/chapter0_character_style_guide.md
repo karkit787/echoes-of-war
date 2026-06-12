@@ -193,9 +193,11 @@ chosen source and exact prompt when the generation tool exposes them.
 
 The current Chapter 0 baseline was generated with the built-in image-generation
 tool. Exact prompts and refinements are stored in
-`assets/prompts/chapter0/character_portraits.md`; shared rejection guidance is
-stored in `assets/prompts/chapter0/negative_prompts.md`; machine-readable asset
-records are stored in `assets/prompts/chapter0/asset_manifest.json`.
+`content/chapters/chapter-0-prologue/art-prompts/character_portraits.md`;
+shared rejection guidance is stored in
+`content/chapters/chapter-0-prologue/art-prompts/negative_prompts.md`;
+machine-readable asset records are stored in
+`content/chapters/chapter-0-prologue/art-prompts/asset_manifest.json`.
 
 The generated files are 1086 by 1448 pixel PNGs, a strict 3:4 ratio. Keep this
 ratio for future portraits even if final runtime imports are downscaled.

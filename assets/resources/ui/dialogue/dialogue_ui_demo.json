@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "fileId": "dialogue_ui_demo",
+  "chapter": "ui_demo",
+  "entryId": "dialogue_ui_demo_001",
+  "nodes": [
+    {
+      "id": "dialogue_ui_demo_001",
+      "speaker": "Narration",
+      "text": "The panel gathers at the bottom of the screen like a dark layer of paint.",
+      "next": "dialogue_ui_demo_002"
+    },
+    {
+      "id": "dialogue_ui_demo_002",
+      "speaker": "Logic",
+      "portrait": "char_ch0_ai_logic_portrait",
+      "text": "Speaker, portrait, typewriter reveal, and accent styling are responding to the same data node.",
+      "next": "dialogue_ui_demo_003"
+    },
+    {
+      "id": "dialogue_ui_demo_003",
+      "speaker": "System",
+      "text": "Choose a presentation check.",
+      "choices": [
+        {
+          "label": "Show the narration ending.",
+          "next": "dialogue_ui_demo_narration"
+        },
+        {
+          "label": "Show a consciousness response.",
+          "next": "dialogue_ui_demo_conscience"
+        }
+      ]
+    },
+    {
+      "id": "dialogue_ui_demo_narration",
+      "speaker": "Narration",
+      "text": "The choice resolves without any Chapter 0 gameplay integration."
+    },
+    {
+      "id": "dialogue_ui_demo_conscience",
+      "speaker": "Conscience",
+      "portrait": "char_ch0_ai_conscience_portrait",
+      "text": "A reusable interface should make its purpose clear without borrowing another game's identity."
+    }
+  ]
+}

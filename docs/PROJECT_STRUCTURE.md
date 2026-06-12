@@ -9,7 +9,6 @@ curriculum material to Cocos Creator code.
 - `AGENTS.md` contains repository-level instructions for Codex and contributors.
 - `.agents/skills/` contains reusable Codex workflows for history writing,
   companion dialogue, syllabus review, and the WeChat/Cocos MVP.
-- `README.md` provides the project overview and entry points.
 
 ## Documentation
 
@@ -27,16 +26,16 @@ curriculum material to Cocos Creator code.
 - `assets/scenes/` contains Cocos Creator scenes.
 - `assets/scripts/` contains TypeScript grouped by system responsibility.
 - `assets/prefabs/` contains reusable Cocos nodes and UI prefabs.
-- `assets/resources/` contains runtime-loadable structured data and lightweight
-  game resources.
-- `assets/textures/`, `assets/audio/`, and `assets/fonts/` contain presentation
-  assets intended for the shipped build.
+- `assets/dialogue/` contains validated runtime dialogue JSON.
+- `assets/images/`, `assets/ui/`, `assets/audio/`, and `assets/fonts/` contain
+  presentation assets intended for the shipped build.
+- `assets/resources/` is reserved for assets loaded dynamically through Cocos
+  `resources.load`; do not duplicate ordinary runtime files there.
 
 ## Authored learning content
 
-- `content/chapters/` contains chapter-specific narrative source material.
-- `content/dialogue/` separates companion personalities, NPC dialogue, and
-  player decision content.
+- `content/chapters/` contains chapter-specific narrative source material,
+  planning notes, and art-generation provenance.
 - `content/historical-events/` records event-level historical anchors.
 - `content/source-exercises/` contains source-based inquiry activities.
 - `content/assessments/` contains learning checks and assessment drafts.

@@ -1,0 +1,441 @@
+{
+  "schemaVersion": 1,
+  "fileId": "ch0_choices",
+  "chapter": "chapter0",
+  "entryId": "ch0_choice_wake_response",
+  "nodes": [
+    {
+      "id": "ch0_choice_wake_response",
+      "speaker": "System",
+      "decisionId": "wake_response",
+      "text": "How do you respond?",
+      "choices": [
+        {
+          "label": "Stay still and assess the room.",
+          "next": "ch0_choice_wake_cautious_001",
+          "effects": {
+            "set": {
+              "ch0_started": true,
+              "ch0_response_style": "cautious"
+            }
+          }
+        },
+        {
+          "label": "Force yourself upright.",
+          "next": "ch0_choice_wake_urgent_001",
+          "effects": {
+            "set": {
+              "ch0_started": true,
+              "ch0_response_style": "urgent"
+            }
+          }
+        },
+        {
+          "label": "Call out for help.",
+          "next": "ch0_choice_wake_help_001",
+          "effects": {
+            "set": {
+              "ch0_started": true,
+              "ch0_response_style": "seeking_help"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ch0_choice_wake_cautious_001",
+      "speaker": "Player",
+      "portrait": "char_ch0_main_trainee_historian_portrait",
+      "text": "No sudden movement. Floor, exits, danger. Start with what is here.",
+      "next": "ch0_choice_wake_cautious_002"
+    },
+    {
+      "id": "ch0_choice_wake_cautious_002",
+      "speaker": "Logic",
+      "portrait": "char_ch0_ai_logic_portrait",
+      "text": "Measured response. Observation reduces avoidable risk.",
+      "next": "ch0_ai_identity_001"
+    },
+    {
+      "id": "ch0_choice_wake_urgent_001",
+      "speaker": "Player",
+      "portrait": "char_ch0_main_trainee_historian_portrait",
+      "text": "I cannot stay on the floor.",
+      "next": "ch0_choice_wake_urgent_002"
+    },
+    {
+      "id": "ch0_choice_wake_urgent_002",
+      "speaker": "Empathy",
+      "portrait": "char_ch0_ai_empathy_portrait",
+      "text": "Then rise slowly. Determination is useful; another head injury is not.",
+      "next": "ch0_ai_identity_001"
+    },
+    {
+      "id": "ch0_choice_wake_help_001",
+      "speaker": "Player",
+      "portrait": "char_ch0_main_trainee_historian_portrait",
+      "text": "Hello? Is anyone there?",
+      "next": "ch0_choice_wake_help_002"
+    },
+    {
+      "id": "ch0_choice_wake_help_002",
+      "speaker": "Scepticism",
+      "portrait": "char_ch0_ai_scepticism_portrait",
+      "text": "No answer. Before calling again, consider who might hear and whether they would be safe to meet.",
+      "next": "ch0_ai_identity_001"
+    },
+    {
+      "id": "ch0_choice_trust_memory",
+      "speaker": "System",
+      "decisionId": "memory_trust",
+      "text": "A memory presses against the evidence. How will you treat it?",
+      "choices": [
+        {
+          "label": "Accept the memory as the truth.",
+          "next": "ch0_choice_memory_accept_001",
+          "effects": {
+            "set": {
+              "ch0_memory_response": "accepted_too_early"
+            }
+          }
+        },
+        {
+          "label": "Compare it with the physical clues.",
+          "next": "ch0_choice_memory_verify_001",
+          "effects": {
+            "set": {
+              "ch0_memory_response": "corroborated"
+            }
+          }
+        },
+        {
+          "label": "Push it away and rely only on the room.",
+          "next": "ch0_choice_memory_reject_001",
+          "effects": {
+            "set": {
+              "ch0_memory_response": "rejected"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ch0_choice_memory_accept_001",
+      "speaker": "Player",
+      "portrait": "char_ch0_main_trainee_historian_portrait",
+      "text": "It feels like mine. I will trust it.",
+      "next": "ch0_choice_memory_accept_002"
+    },
+    {
+      "id": "ch0_choice_memory_accept_002",
+      "speaker": "Scepticism",
+      "portrait": "char_ch0_ai_scepticism_portrait",
+      "text": "Feeling authentic and being accurate are not the same. Keep the memory, but test every claim it makes.",
+      "next": "ch0_flash_countdown_001"
+    },
+    {
+      "id": "ch0_choice_memory_verify_001",
+      "speaker": "Player",
+      "portrait": "char_ch0_main_trainee_historian_portrait",
+      "text": "Show me what remains. I will compare it with the device and the room.",
+      "next": "ch0_choice_memory_verify_002"
+    },
+    {
+      "id": "ch0_choice_memory_verify_002",
+      "speaker": "Logic",
+      "portrait": "char_ch0_ai_logic_portrait",
+      "text": "Correct method. Memory is an account. Physical traces may support, qualify, or contradict it.",
+      "effects": {
+        "increment": {
+          "timeline_stability": 1
+        }
+      },
+      "next": "ch0_flash_countdown_001"
+    },
+    {
+      "id": "ch0_choice_memory_reject_001",
+      "speaker": "Player",
+      "portrait": "char_ch0_main_trainee_historian_portrait",
+      "text": "No. The memory is too damaged to use.",
+      "next": "ch0_choice_memory_reject_002"
+    },
+    {
+      "id": "ch0_choice_memory_reject_002",
+      "speaker": "Memory",
+      "portrait": "char_ch0_ai_memory_portrait",
+      "text": "Damaged is not worthless. Let me speak in fragments; let the evidence decide what survives.",
+      "next": "ch0_flash_countdown_001"
+    },
+    {
+      "id": "ch0_choice_accident_evidence",
+      "speaker": "System",
+      "decisionId": "accident_evidence",
+      "text": "Which conclusion is best supported by the flashbacks and physical evidence?",
+      "hints": [
+        {
+          "level": 1,
+          "trait": "Logic",
+          "text": "Separate the sequence into preparation, failure, and consequence. What happened before transport stabilized?"
+        },
+        {
+          "level": 2,
+          "trait": "Scepticism",
+          "text": "Look at the device itself. Its core ruptured outward; no evidence yet points to an attacker."
+        },
+        {
+          "level": 3,
+          "trait": "Memory",
+          "text": "Countdown. Warning light. Containment rising. The crossing came after the alarm, not before it."
+        },
+        {
+          "level": 4,
+          "trait": "Logic",
+          "text": "Choose between containment failure before safe transfer, deliberate sabotage, or a purely imagined event."
+        },
+        {
+          "level": 5,
+          "trait": "Logic",
+          "text": "The damaged core and sequence both support containment failure before transport stabilized. Select that conclusion and continue."
+        }
+      ],
+      "choices": [
+        {
+          "label": "Containment failed before transport stabilized.",
+          "next": "ch0_choice_accident_correct_001",
+          "effects": {
+            "increment": {
+              "ch0_memory_sequence_attempts": 1
+            },
+            "set": {
+              "ch0_accident_conclusion": "containment_failure"
+            }
+          }
+        },
+        {
+          "label": "Someone deliberately sabotaged the experiment.",
+          "next": "ch0_choice_accident_sabotage_001",
+          "effects": {
+            "increment": {
+              "ch0_memory_sequence_attempts": 1
+            }
+          }
+        },
+        {
+          "label": "The accident was only a hallucination.",
+          "next": "ch0_choice_accident_hallucination_001",
+          "effects": {
+            "increment": {
+              "ch0_memory_sequence_attempts": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ch0_choice_accident_correct_001",
+      "speaker": "Player",
+      "portrait": "char_ch0_main_trainee_historian_portrait",
+      "text": "The sequence and the damage agree. Containment failed before the transfer became stable.",
+      "next": "ch0_choice_accident_correct_002"
+    },
+    {
+      "id": "ch0_choice_accident_correct_002",
+      "speaker": "Logic",
+      "portrait": "char_ch0_ai_logic_portrait",
+      "text": "Supported conclusion. It explains the core rupture, the interrupted countdown, and the incomplete crossing without inventing a cause.",
+      "effects": {
+        "set": {
+          "ch0_accident_partially_recalled": true
+        },
+        "increment": {
+          "timeline_stability": 1
+        },
+        "appendUnique": {
+          "ch0_evidence": [
+            "evidence_containment_failed_before_transfer"
+          ]
+        }
+      },
+      "next": "ch0_ai_chorus_001"
+    },
+    {
+      "id": "ch0_choice_accident_sabotage_001",
+      "speaker": "Scepticism",
+      "portrait": "char_ch0_ai_scepticism_portrait",
+      "text": "Possible is not supported. You saw failure, not sabotage. What evidence identifies deliberate interference?",
+      "next": "ch0_choice_accident_evidence"
+    },
+    {
+      "id": "ch0_choice_accident_hallucination_001",
+      "speaker": "Memory",
+      "portrait": "char_ch0_ai_memory_portrait",
+      "text": "I may distort the scene, but the broken core and terminal exist outside me. Do not discard corroborating evidence.",
+      "next": "ch0_choice_accident_evidence"
+    },
+    {
+      "id": "ch0_choice_trusted_voice",
+      "speaker": "System",
+      "decisionId": "trusted_voice",
+      "text": "Which inner voice will guide your first step beyond the room?",
+      "choices": [
+        {
+          "label": "Logic: establish the chronology.",
+          "next": "ch0_choice_trust_logic_001",
+          "effects": {
+            "set": {
+              "ch0_first_trusted_trait": "logic"
+            }
+          }
+        },
+        {
+          "label": "Empathy: steady yourself before moving.",
+          "next": "ch0_choice_trust_empathy_001",
+          "effects": {
+            "set": {
+              "ch0_first_trusted_trait": "empathy"
+            }
+          }
+        },
+        {
+          "label": "Scepticism: verify every apparent clue.",
+          "next": "ch0_choice_trust_scepticism_001",
+          "effects": {
+            "set": {
+              "ch0_first_trusted_trait": "scepticism"
+            }
+          }
+        },
+        {
+          "label": "Memory: recover the missing instruction.",
+          "next": "ch0_choice_trust_memory_001",
+          "effects": {
+            "set": {
+              "ch0_first_trusted_trait": "memory"
+            }
+          }
+        },
+        {
+          "label": "Conscience: consider the risk to others.",
+          "next": "ch0_choice_trust_conscience_001",
+          "effects": {
+            "set": {
+              "ch0_first_trusted_trait": "conscience"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ch0_choice_trust_logic_001",
+      "speaker": "Logic",
+      "portrait": "char_ch0_ai_logic_portrait",
+      "text": "Then we proceed by comparison: internal calibration, physical evidence, external date.",
+      "next": "ch0_intro_corridor_001"
+    },
+    {
+      "id": "ch0_choice_trust_empathy_001",
+      "speaker": "Empathy",
+      "portrait": "char_ch0_ai_empathy_portrait",
+      "text": "Then feel your feet beneath you. Fear can travel with us; it does not have to lead.",
+      "next": "ch0_intro_corridor_001"
+    },
+    {
+      "id": "ch0_choice_trust_scepticism_001",
+      "speaker": "Scepticism",
+      "portrait": "char_ch0_ai_scepticism_portrait",
+      "text": "Then grant no clue more certainty than it earns, including anything I tell you.",
+      "next": "ch0_intro_corridor_001"
+    },
+    {
+      "id": "ch0_choice_trust_memory_001",
+      "speaker": "Memory",
+      "portrait": "char_ch0_ai_memory_portrait",
+      "text": "Then follow what returns, but mark the gaps. I would rather be incomplete than falsely whole.",
+      "next": "ch0_intro_corridor_001"
+    },
+    {
+      "id": "ch0_choice_trust_conscience_001",
+      "speaker": "Conscience",
+      "portrait": "char_ch0_ai_conscience_portrait",
+      "text": "Then move carefully. A path home is not worth finding by making strangers pay for it.",
+      "next": "ch0_intro_corridor_001"
+    },
+    {
+      "id": "ch0_choice_timeline_conclusion",
+      "speaker": "System",
+      "decisionId": "timeline_conclusion",
+      "text": "What best explains the conflicting evidence?",
+      "hints": [
+        {
+          "level": 1,
+          "trait": "Scepticism",
+          "text": "Which conclusion accounts for both the machine's calibration and the physical date clue?"
+        },
+        {
+          "level": 2,
+          "trait": "Logic",
+          "text": "The apparatus belongs to your remembered future. The newspaper belongs to January 1919."
+        },
+        {
+          "level": 3,
+          "trait": "Memory",
+          "text": "The terminal warned of an external chronology mismatch. The crossing did not finish safely."
+        },
+        {
+          "level": 4,
+          "trait": "Scepticism",
+          "text": "A simulation requires evidence of simulation. Remaining in your own time does not explain the period clues."
+        },
+        {
+          "level": 5,
+          "trait": "Logic",
+          "text": "The strongest current conclusion is temporal displacement into an unstable past. Exact date and place still require verification."
+        }
+      ],
+      "choices": [
+        {
+          "label": "The device failed, but I remain in my own time.",
+          "next": "ch0_choice_timeline_same_time_001",
+          "effects": {
+            "increment": {
+              "ch0_timeline_conclusion_attempts": 1
+            }
+          }
+        },
+        {
+          "label": "The facility is a reconstruction or simulation.",
+          "next": "ch0_choice_timeline_simulation_001",
+          "effects": {
+            "increment": {
+              "ch0_timeline_conclusion_attempts": 1
+            }
+          }
+        },
+        {
+          "label": "I was displaced into the past, and the timeline is unstable.",
+          "next": "ch0_intro_end_001",
+          "effects": {
+            "increment": {
+              "ch0_timeline_conclusion_attempts": 1,
+              "timeline_stability": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ch0_choice_timeline_same_time_001",
+      "speaker": "Logic",
+      "portrait": "char_ch0_ai_logic_portrait",
+      "text": "That does not explain the 1919 newspaper, period sounds outside, or the chronology mismatch. Revise the conclusion.",
+      "next": "ch0_choice_timeline_conclusion"
+    },
+    {
+      "id": "ch0_choice_timeline_simulation_001",
+      "speaker": "Scepticism",
+      "portrait": "char_ch0_ai_scepticism_portrait",
+      "text": "A simulation is conceivable, but unsupported. Prefer the explanation that requires the fewest unobserved assumptions.",
+      "next": "ch0_choice_timeline_conclusion"
+    }
+  ]
+}

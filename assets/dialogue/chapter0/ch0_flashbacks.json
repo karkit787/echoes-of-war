@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 1,
+  "fileId": "ch0_flashbacks",
+  "chapter": "chapter0",
+  "entryId": "ch0_flash_countdown_001",
+  "nodes": [
+    {
+      "id": "ch0_flash_countdown_001",
+      "speaker": "Narration",
+      "flashbackId": "experiment_countdown",
+      "text": "The ruined room peels away. Clean glass rises around a polished chamber. The time apparatus turns in perfect silence.",
+      "background": "bg_ch0_time_machine_chamber",
+      "next": "ch0_flash_countdown_002"
+    },
+    {
+      "id": "ch0_flash_countdown_002",
+      "speaker": "Memory",
+      "portrait": "char_ch0_ai_memory_portrait",
+      "flashbackId": "experiment_countdown",
+      "text": "Calibration complete. Historical anchor selected. You were taking notes because trainees were not meant to enter.",
+      "next": "ch0_flash_countdown_003"
+    },
+    {
+      "id": "ch0_flash_countdown_003",
+      "speaker": "Narration",
+      "flashbackId": "experiment_countdown",
+      "text": "Behind the observation glass, a researcher raises two fingers. The countdown display falls from five to four.",
+      "next": "ch0_flash_countdown_004"
+    },
+    {
+      "id": "ch0_flash_countdown_004",
+      "speaker": "Scepticism",
+      "portrait": "char_ch0_ai_scepticism_portrait",
+      "flashbackId": "experiment_countdown",
+      "text": "A clean memory is suspicious. Notice what is absent: no face, no date, no reason you crossed the safety line.",
+      "next": "ch0_flash_countdown_005"
+    },
+    {
+      "id": "ch0_flash_countdown_005",
+      "speaker": "Logic",
+      "portrait": "char_ch0_ai_logic_portrait",
+      "flashbackId": "experiment_countdown",
+      "text": "Still, the sequence establishes preparation before failure. Keep the observation; reserve the explanation.",
+      "next": "ch0_flash_failure_001"
+    },
+    {
+      "id": "ch0_flash_failure_001",
+      "speaker": "Narration",
+      "flashbackId": "containment_failure",
+      "text": "The display reaches three. Blue light bends sideways. Warning lamps stain the chamber red.",
+      "background": "bg_ch0_destroyed_lab_flashback",
+      "next": "ch0_flash_failure_002"
+    },
+    {
+      "id": "ch0_flash_failure_002",
+      "speaker": "Memory",
+      "portrait": "char_ch0_ai_memory_portrait",
+      "flashbackId": "containment_failure",
+      "text": "Containment rising. Manual cutoff unanswered. Someone shouts your name, but the sound breaks before it reaches you.",
+      "next": "ch0_flash_failure_003"
+    },
+    {
+      "id": "ch0_flash_failure_003",
+      "speaker": "Empathy",
+      "portrait": "char_ch0_ai_empathy_portrait",
+      "flashbackId": "containment_failure",
+      "text": "You ran toward the chamber because someone was trapped near the controls. Fear moved before training could stop it.",
+      "next": "ch0_flash_failure_004"
+    },
+    {
+      "id": "ch0_flash_failure_004",
+      "speaker": "Conscience",
+      "portrait": "char_ch0_ai_conscience_portrait",
+      "flashbackId": "containment_failure",
+      "text": "Trying to help does not erase consequences. Neither does it make you responsible for every failure around you.",
+      "next": "ch0_flash_failure_005"
+    },
+    {
+      "id": "ch0_flash_failure_005",
+      "speaker": "Logic",
+      "portrait": "char_ch0_ai_logic_portrait",
+      "flashbackId": "containment_failure",
+      "text": "The core ruptures before transport stabilizes. That matches the outward damage observed on the device.",
+      "next": "ch0_flash_instruction_001"
+    },
+    {
+      "id": "ch0_flash_instruction_001",
+      "speaker": "Narration",
+      "flashbackId": "final_instruction",
+      "text": "The chamber becomes a dark field of suspended fragments. A gloved hand reaches through the broken light.",
+      "background": "bg_ch0_memory_void",
+      "next": "ch0_flash_instruction_002"
+    },
+    {
+      "id": "ch0_flash_instruction_002",
+      "speaker": "Memory",
+      "portrait": "char_ch0_ai_memory_portrait",
+      "flashbackId": "final_instruction",
+      "text": "A voice: If the anchor shifts, do not correct the outcome blindly. Find the causes. Preserve the path. Then static.",
+      "next": "ch0_flash_instruction_003"
+    },
+    {
+      "id": "ch0_flash_instruction_003",
+      "speaker": "Scepticism",
+      "portrait": "char_ch0_ai_scepticism_portrait",
+      "flashbackId": "final_instruction",
+      "text": "Convenient guidance from an unidentified voice. Treat it as a lead, not a command.",
+      "next": "ch0_flash_instruction_004"
+    },
+    {
+      "id": "ch0_flash_instruction_004",
+      "speaker": "Player",
+      "portrait": "char_ch0_main_trainee_historian_portrait",
+      "flashbackId": "final_instruction",
+      "text": "The machine broke before the journey completed. That is why the room and my memory do not fit.",
+      "next": "ch0_flash_instruction_005"
+    },
+    {
+      "id": "ch0_flash_instruction_005",
+      "speaker": "Logic",
+      "portrait": "char_ch0_ai_logic_portrait",
+      "flashbackId": "final_instruction",
+      "text": "A plausible hypothesis. Now distinguish what the sequence supports from what fear merely suggests.",
+      "next": "ch0_choice_accident_evidence"
+    }
+  ]
+}

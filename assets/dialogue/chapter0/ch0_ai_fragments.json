@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "fileId": "ch0_ai_fragments",
+  "chapter": "chapter0",
+  "entryId": "ch0_ai_identity_001",
+  "nodes": [
+    {
+      "id": "ch0_ai_identity_001",
+      "speaker": "Logic",
+      "portrait": "char_ch0_ai_logic_portrait",
+      "text": "I isolate patterns. Causes, consequences, contradictions. Call me Logic if a name helps.",
+      "effects": {
+        "set": {
+          "ch0_logic_introduced": true
+        }
+      },
+      "next": "ch0_ai_identity_002"
+    },
+    {
+      "id": "ch0_ai_identity_002",
+      "speaker": "Empathy",
+      "portrait": "char_ch0_ai_empathy_portrait",
+      "text": "I feel what the others reduce to data: pain, fear, the weight of another person's life. I am Empathy.",
+      "effects": {
+        "set": {
+          "ch0_empathy_introduced": true
+        }
+      },
+      "next": "ch0_ai_identity_003"
+    },
+    {
+      "id": "ch0_ai_identity_003",
+      "speaker": "Scepticism",
+      "portrait": "char_ch0_ai_scepticism_portrait",
+      "text": "Names are convenient. Evidence is better. I doubt what has not earned belief. Scepticism will do.",
+      "effects": {
+        "set": {
+          "ch0_scepticism_introduced": true
+        }
+      },
+      "next": "ch0_ai_identity_004"
+    },
+    {
+      "id": "ch0_ai_identity_004",
+      "speaker": "Memory",
+      "portrait": "char_ch0_ai_memory_portrait",
+      "text": "I keep what remains. Faces without names. Warnings without endings. I think I was Memory.",
+      "effects": {
+        "set": {
+          "ch0_memory_introduced": true
+        }
+      },
+      "next": "ch0_ai_identity_005"
+    },
+    {
+      "id": "ch0_ai_identity_005",
+      "speaker": "Conscience",
+      "portrait": "char_ch0_ai_conscience_portrait",
+      "text": "And I ask what your choices will cost. Not to condemn you. To ensure the cost is seen. I am Conscience.",
+      "effects": {
+        "set": {
+          "ch0_conscience_introduced": true
+        }
+      },
+      "next": "ch0_ai_identity_006"
+    },
+    {
+      "id": "ch0_ai_identity_006",
+      "speaker": "Player",
+      "portrait": "char_ch0_main_trainee_historian_portrait",
+      "text": "You sound like separate people.",
+      "next": "ch0_ai_identity_007"
+    },
+    {
+      "id": "ch0_ai_identity_007",
+      "speaker": "Logic",
+      "portrait": "char_ch0_ai_logic_portrait",
+      "text": "Incorrect. Separate functions, one injured consciousness. The distinction may become important.",
+      "next": "ch0_ai_identity_008"
+    },
+    {
+      "id": "ch0_ai_identity_008",
+      "speaker": "System",
+      "text": "Investigation available. Inspect the damaged device and at least two other objects before leaving.",
+      "next": "ch0_inspection_hub"
+    },
+    {
+      "id": "ch0_ai_chorus_001",
+      "speaker": "Conscience",
+      "portrait": "char_ch0_ai_conscience_portrait",
+      "text": "The accident did not end inside that chamber. Something crossed with you, and consequences may already be moving.",
+      "next": "ch0_ai_chorus_002"
+    },
+    {
+      "id": "ch0_ai_chorus_002",
+      "speaker": "Empathy",
+      "portrait": "char_ch0_ai_empathy_portrait",
+      "text": "You do not need every answer before you stand. You need one reliable next step.",
+      "next": "ch0_ai_chorus_003"
+    },
+    {
+      "id": "ch0_ai_chorus_003",
+      "speaker": "Scepticism",
+      "portrait": "char_ch0_ai_scepticism_portrait",
+      "text": "Reliable means tested. The memory explains the damage, but the date must come from outside your head.",
+      "next": "ch0_ai_chorus_004"
+    },
+    {
+      "id": "ch0_ai_chorus_004",
+      "speaker": "Memory",
+      "portrait": "char_ch0_ai_memory_portrait",
+      "text": "The instruction is still missing. Perhaps it waits beyond the room. Perhaps I lost it on the way here.",
+      "next": "ch0_ai_chorus_005"
+    },
+    {
+      "id": "ch0_ai_chorus_005",
+      "speaker": "Logic",
+      "portrait": "char_ch0_ai_logic_portrait",
+      "text": "Priority order: confirm displacement, establish chronology, then determine whether repair is possible.",
+      "next": "ch0_ai_chorus_006"
+    },
+    {
+      "id": "ch0_ai_chorus_006",
+      "speaker": "System",
+      "text": "Choose which part of your consciousness you will rely on first.",
+      "next": "ch0_choice_trusted_voice"
+    }
+  ]
+}

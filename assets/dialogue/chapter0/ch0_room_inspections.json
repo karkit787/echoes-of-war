@@ -1,0 +1,478 @@
+{
+  "schemaVersion": 1,
+  "fileId": "ch0_room_inspections",
+  "chapter": "chapter0",
+  "entryId": "ch0_inspection_hub",
+  "nodes": [
+    {
+      "id": "ch0_inspection_hub",
+      "speaker": "System",
+      "text": "Choose what to inspect.",
+      "choices": [
+        {
+          "label": "Examine the broken time device.",
+          "next": "ch0_inspect_device_001",
+          "conditions": {
+            "all": [
+              {
+                "key": "inspected_broken_time_device",
+                "operator": "not_equals",
+                "value": true
+              }
+            ]
+          }
+        },
+        {
+          "label": "Pick up the damaged ID card.",
+          "next": "ch0_inspect_id_card_001",
+          "conditions": {
+            "all": [
+              {
+                "key": "inspected_damaged_id_card",
+                "operator": "not_equals",
+                "value": true
+              }
+            ]
+          }
+        },
+        {
+          "label": "Read the scattered research notes.",
+          "next": "ch0_inspect_notes_001",
+          "conditions": {
+            "all": [
+              {
+                "key": "inspected_research_notes",
+                "operator": "not_equals",
+                "value": true
+              }
+            ]
+          }
+        },
+        {
+          "label": "Open the old newspaper.",
+          "next": "ch0_inspect_newspaper_001",
+          "conditions": {
+            "all": [
+              {
+                "key": "inspected_old_newspaper",
+                "operator": "not_equals",
+                "value": true
+              }
+            ]
+          }
+        },
+        {
+          "label": "Check the cracked watch.",
+          "next": "ch0_inspect_watch_001",
+          "conditions": {
+            "all": [
+              {
+                "key": "inspected_cracked_watch",
+                "operator": "not_equals",
+                "value": true
+              }
+            ]
+          }
+        },
+        {
+          "label": "Try the lab terminal.",
+          "next": "ch0_inspect_terminal_001",
+          "conditions": {
+            "all": [
+              {
+                "key": "inspected_lab_terminal",
+                "operator": "not_equals",
+                "value": true
+              }
+            ]
+          }
+        },
+        {
+          "label": "Touch the memory shard.",
+          "next": "ch0_inspect_shard_001",
+          "conditions": {
+            "all": [
+              {
+                "key": "inspected_memory_shard",
+                "operator": "not_equals",
+                "value": true
+              }
+            ]
+          }
+        },
+        {
+          "label": "Move toward the corridor.",
+          "next": "ch0_choice_trust_memory",
+          "conditions": {
+            "all": [
+              {
+                "key": "inspected_broken_time_device",
+                "operator": "equals",
+                "value": true
+              },
+              {
+                "key": "ch0_inspection_count",
+                "operator": "gte",
+                "value": 3
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "ch0_inspect_device_001",
+      "speaker": "Narration",
+      "objectId": "broken_time_device",
+      "text": "The apparatus is built from nested metal rings around a split glass core. Its blue pulse weakens each time it returns.",
+      "next": "ch0_inspect_device_002"
+    },
+    {
+      "id": "ch0_inspect_device_002",
+      "speaker": "Player",
+      "portrait": "char_ch0_main_trainee_historian_portrait",
+      "objectId": "broken_time_device",
+      "text": "I know this machine. I was standing inside it.",
+      "next": "ch0_inspect_device_003"
+    },
+    {
+      "id": "ch0_inspect_device_003",
+      "speaker": "Logic",
+      "portrait": "char_ch0_ai_logic_portrait",
+      "objectId": "broken_time_device",
+      "text": "The containment ring ruptured outward. Whatever failed began at the core, not from an impact in this room.",
+      "next": "ch0_inspect_device_004"
+    },
+    {
+      "id": "ch0_inspect_device_004",
+      "speaker": "Memory",
+      "portrait": "char_ch0_ai_memory_portrait",
+      "objectId": "broken_time_device",
+      "text": "White coats behind glass. A countdown. Someone shouting to stop at three. The rest is burned away.",
+      "next": "ch0_inspect_device_005"
+    },
+    {
+      "id": "ch0_inspect_device_005",
+      "speaker": "Scepticism",
+      "portrait": "char_ch0_ai_scepticism_portrait",
+      "objectId": "broken_time_device",
+      "text": "Useful, if the fracture and the memory agree. Do not promote a flash of pain into a complete account.",
+      "effects": {
+        "set": {
+          "inspected_broken_time_device": true
+        },
+        "setIfAbsent": {
+          "ch0_first_clue": "broken_time_device"
+        },
+        "increment": {
+          "ch0_inspection_count": 1
+        },
+        "appendUnique": {
+          "ch0_evidence": [
+            "evidence_device_core_rupture"
+          ]
+        }
+      },
+      "next": "ch0_inspection_hub"
+    },
+    {
+      "id": "ch0_inspect_id_card_001",
+      "speaker": "Narration",
+      "objectId": "damaged_id_card",
+      "text": "A warped identification card lies beneath a cabinet. Most of the photograph is scorched; the surviving face resembles yours.",
+      "next": "ch0_inspect_id_card_002"
+    },
+    {
+      "id": "ch0_inspect_id_card_002",
+      "speaker": "Player",
+      "portrait": "char_ch0_main_trainee_historian_portrait",
+      "objectId": "damaged_id_card",
+      "text": "Trainee Historian. Temporal Research Division. The name is gone.",
+      "next": "ch0_inspect_id_card_003"
+    },
+    {
+      "id": "ch0_inspect_id_card_003",
+      "speaker": "Memory",
+      "portrait": "char_ch0_ai_memory_portrait",
+      "objectId": "damaged_id_card",
+      "text": "A lanyard against a clean shirt. First day. Someone saying your name... no, it slips away again.",
+      "next": "ch0_inspect_id_card_004"
+    },
+    {
+      "id": "ch0_inspect_id_card_004",
+      "speaker": "Empathy",
+      "portrait": "char_ch0_ai_empathy_portrait",
+      "objectId": "damaged_id_card",
+      "text": "A missing name does not make you empty. Your choices still belong to you.",
+      "next": "ch0_inspect_id_card_005"
+    },
+    {
+      "id": "ch0_inspect_id_card_005",
+      "speaker": "Scepticism",
+      "portrait": "char_ch0_ai_scepticism_portrait",
+      "objectId": "damaged_id_card",
+      "text": "The card supports your role and appearance. It does not prove why you were in the machine.",
+      "effects": {
+        "set": {
+          "inspected_damaged_id_card": true
+        },
+        "setIfAbsent": {
+          "ch0_first_clue": "damaged_id_card"
+        },
+        "increment": {
+          "ch0_inspection_count": 1
+        },
+        "appendUnique": {
+          "ch0_evidence": [
+            "evidence_trainee_id_card"
+          ]
+        }
+      },
+      "next": "ch0_inspection_hub"
+    },
+    {
+      "id": "ch0_inspect_notes_001",
+      "speaker": "Narration",
+      "objectId": "research_notes",
+      "text": "The notes are water-stained and written in several hands. One line survives: Observe the anchor. Do not alter it before corroboration.",
+      "next": "ch0_inspect_notes_002"
+    },
+    {
+      "id": "ch0_inspect_notes_002",
+      "speaker": "Logic",
+      "portrait": "char_ch0_ai_logic_portrait",
+      "objectId": "research_notes",
+      "text": "A procedure for timeline research: observe, corroborate, then act. The order is deliberate.",
+      "next": "ch0_inspect_notes_003"
+    },
+    {
+      "id": "ch0_inspect_notes_003",
+      "speaker": "Scepticism",
+      "portrait": "char_ch0_ai_scepticism_portrait",
+      "objectId": "research_notes",
+      "text": "And written by people who built the broken machine. Method deserves attention, not blind trust.",
+      "next": "ch0_inspect_notes_004"
+    },
+    {
+      "id": "ch0_inspect_notes_004",
+      "speaker": "Conscience",
+      "portrait": "char_ch0_ai_conscience_portrait",
+      "objectId": "research_notes",
+      "text": "The warning assumes observation can become interference. Remember that before treating the past as a puzzle made for you.",
+      "effects": {
+        "set": {
+          "inspected_research_notes": true
+        },
+        "setIfAbsent": {
+          "ch0_first_clue": "research_notes"
+        },
+        "increment": {
+          "ch0_inspection_count": 1
+        },
+        "appendUnique": {
+          "ch0_evidence": [
+            "evidence_corroboration_protocol"
+          ]
+        }
+      },
+      "next": "ch0_inspection_hub"
+    },
+    {
+      "id": "ch0_inspect_newspaper_001",
+      "speaker": "Narration",
+      "objectId": "old_newspaper",
+      "text": "A brittle newspaper reports delegates gathering in Paris to negotiate peace after the Great War. The surviving date reads January 1919.",
+      "next": "ch0_inspect_newspaper_002"
+    },
+    {
+      "id": "ch0_inspect_newspaper_002",
+      "speaker": "Memory",
+      "portrait": "char_ch0_ai_memory_portrait",
+      "objectId": "old_newspaper",
+      "text": "Paris. Competing aims. Security, punishment, compensation... lessons filed for a journey that had not begun.",
+      "next": "ch0_inspect_newspaper_003"
+    },
+    {
+      "id": "ch0_inspect_newspaper_003",
+      "speaker": "Scepticism",
+      "portrait": "char_ch0_ai_scepticism_portrait",
+      "objectId": "old_newspaper",
+      "text": "A newspaper date proves when the paper was printed, not when it reached this floor. Seek another chronological clue.",
+      "next": "ch0_inspect_newspaper_004"
+    },
+    {
+      "id": "ch0_inspect_newspaper_004",
+      "speaker": "Logic",
+      "portrait": "char_ch0_ai_logic_portrait",
+      "objectId": "old_newspaper",
+      "text": "Even so, it is physical evidence from a period far earlier than the laboratory calibration.",
+      "effects": {
+        "set": {
+          "inspected_old_newspaper": true
+        },
+        "setIfAbsent": {
+          "ch0_first_clue": "old_newspaper"
+        },
+        "increment": {
+          "ch0_inspection_count": 1
+        },
+        "appendUnique": {
+          "ch0_evidence": [
+            "evidence_newspaper_january_1919"
+          ]
+        }
+      },
+      "next": "ch0_inspection_hub"
+    },
+    {
+      "id": "ch0_inspect_watch_001",
+      "speaker": "Narration",
+      "objectId": "cracked_watch",
+      "text": "A cracked wristwatch is caught around your sleeve. Its hands stopped at 03:17. The digital date window is blank.",
+      "next": "ch0_inspect_watch_002"
+    },
+    {
+      "id": "ch0_inspect_watch_002",
+      "speaker": "Logic",
+      "portrait": "char_ch0_ai_logic_portrait",
+      "objectId": "cracked_watch",
+      "text": "The impact time may be 03:17. With no date and no functioning clock, that remains a limited observation.",
+      "next": "ch0_inspect_watch_003"
+    },
+    {
+      "id": "ch0_inspect_watch_003",
+      "speaker": "Memory",
+      "portrait": "char_ch0_ai_memory_portrait",
+      "objectId": "cracked_watch",
+      "text": "You checked it before entering the chamber. Someone was late. Someone always was. I cannot see who.",
+      "next": "ch0_inspect_watch_004"
+    },
+    {
+      "id": "ch0_inspect_watch_004",
+      "speaker": "Empathy",
+      "portrait": "char_ch0_ai_empathy_portrait",
+      "objectId": "cracked_watch",
+      "text": "Small habits are returning before names. Let them come without forcing them.",
+      "effects": {
+        "set": {
+          "inspected_cracked_watch": true
+        },
+        "setIfAbsent": {
+          "ch0_first_clue": "cracked_watch"
+        },
+        "increment": {
+          "ch0_inspection_count": 1
+        },
+        "appendUnique": {
+          "ch0_evidence": [
+            "evidence_watch_stopped_0317"
+          ]
+        }
+      },
+      "next": "ch0_inspection_hub"
+    },
+    {
+      "id": "ch0_inspect_terminal_001",
+      "speaker": "Narration",
+      "objectId": "lab_terminal",
+      "text": "The lab terminal wakes for four seconds. Most records are corrupted. One diagnostic remains: EXTERNAL CHRONOLOGY MISMATCH.",
+      "next": "ch0_inspect_terminal_002"
+    },
+    {
+      "id": "ch0_inspect_terminal_002",
+      "speaker": "Logic",
+      "portrait": "char_ch0_ai_logic_portrait",
+      "objectId": "lab_terminal",
+      "text": "The system detected a conflict between its calibration and the surrounding time reference.",
+      "next": "ch0_inspect_terminal_003"
+    },
+    {
+      "id": "ch0_inspect_terminal_003",
+      "speaker": "Scepticism",
+      "portrait": "char_ch0_ai_scepticism_portrait",
+      "objectId": "lab_terminal",
+      "text": "Or its sensors failed with everything else. A diagnostic is evidence of a reading, not proof the reading was correct.",
+      "next": "ch0_inspect_terminal_004"
+    },
+    {
+      "id": "ch0_inspect_terminal_004",
+      "speaker": "Conscience",
+      "portrait": "char_ch0_ai_conscience_portrait",
+      "objectId": "lab_terminal",
+      "text": "If the reading is correct, the experiment reached beyond its chamber. The risk may include more lives than yours.",
+      "effects": {
+        "set": {
+          "inspected_lab_terminal": true
+        },
+        "setIfAbsent": {
+          "ch0_first_clue": "lab_terminal"
+        },
+        "increment": {
+          "ch0_inspection_count": 1
+        },
+        "appendUnique": {
+          "ch0_evidence": [
+            "evidence_chronology_mismatch"
+          ]
+        }
+      },
+      "next": "ch0_inspection_hub"
+    },
+    {
+      "id": "ch0_inspect_shard_001",
+      "speaker": "Narration",
+      "objectId": "memory_shard",
+      "text": "A thin scrap of painted light hangs above the floor. It has no solid edge, yet your reflection moves inside it.",
+      "background": "bg_ch0_memory_void",
+      "next": "ch0_inspect_shard_002"
+    },
+    {
+      "id": "ch0_inspect_shard_002",
+      "speaker": "Memory",
+      "portrait": "char_ch0_ai_memory_portrait",
+      "objectId": "memory_shard",
+      "text": "Mine. Yours. A moment torn loose when we crossed. Touch it, and I may remember the wound.",
+      "next": "ch0_inspect_shard_003"
+    },
+    {
+      "id": "ch0_inspect_shard_003",
+      "speaker": "Empathy",
+      "portrait": "char_ch0_ai_empathy_portrait",
+      "objectId": "memory_shard",
+      "text": "The pain is real even if the image is incomplete. Stop if it becomes too much.",
+      "next": "ch0_inspect_shard_004"
+    },
+    {
+      "id": "ch0_inspect_shard_004",
+      "speaker": "Conscience",
+      "portrait": "char_ch0_ai_conscience_portrait",
+      "objectId": "memory_shard",
+      "text": "Do not look only for what happened to you. Listen for who else was in the chamber.",
+      "next": "ch0_inspect_shard_005"
+    },
+    {
+      "id": "ch0_inspect_shard_005",
+      "speaker": "Logic",
+      "portrait": "char_ch0_ai_logic_portrait",
+      "objectId": "memory_shard",
+      "text": "Record it as an uncertain account. Compare it with the damaged core and terminal before drawing a conclusion.",
+      "effects": {
+        "set": {
+          "inspected_memory_shard": true
+        },
+        "setIfAbsent": {
+          "ch0_first_clue": "memory_shard"
+        },
+        "increment": {
+          "ch0_inspection_count": 1
+        },
+        "appendUnique": {
+          "ch0_evidence": [
+            "evidence_memory_shard_uncertain"
+          ]
+        }
+      },
+      "next": "ch0_inspection_hub"
+    }
+  ]
+}

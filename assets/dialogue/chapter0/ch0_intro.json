@@ -1,0 +1,156 @@
+{
+  "schemaVersion": 1,
+  "fileId": "ch0_intro",
+  "chapter": "chapter0",
+  "entryId": "ch0_intro_wake_001",
+  "nodes": [
+    {
+      "id": "ch0_intro_wake_001",
+      "speaker": "Narration",
+      "text": "Darkness loosens slowly. Cold concrete presses against your cheek. Somewhere nearby, a damaged machine clicks without rhythm.",
+      "background": "bg_ch0_abandoned_room",
+      "next": "ch0_intro_wake_002"
+    },
+    {
+      "id": "ch0_intro_wake_002",
+      "speaker": "Narration",
+      "text": "Pain gathers behind your eyes. The air tastes of dust, burned wiring, and old rain.",
+      "next": "ch0_intro_wake_003"
+    },
+    {
+      "id": "ch0_intro_wake_003",
+      "speaker": "Player",
+      "portrait": "char_ch0_main_trainee_historian_portrait",
+      "text": "Where am I?",
+      "next": "ch0_intro_wake_004"
+    },
+    {
+      "id": "ch0_intro_wake_004",
+      "speaker": "Empathy",
+      "portrait": "char_ch0_ai_empathy_portrait",
+      "text": "Breathe first. You are hurt, but you are awake. That is enough for this moment.",
+      "next": "ch0_intro_wake_005"
+    },
+    {
+      "id": "ch0_intro_wake_005",
+      "speaker": "Logic",
+      "portrait": "char_ch0_ai_logic_portrait",
+      "text": "Three facts: you can breathe, you can move, and the room is not actively collapsing. Begin there.",
+      "next": "ch0_intro_wake_006"
+    },
+    {
+      "id": "ch0_intro_wake_006",
+      "speaker": "Player",
+      "portrait": "char_ch0_main_trainee_historian_portrait",
+      "text": "Those voices... are they mine?",
+      "next": "ch0_intro_wake_007"
+    },
+    {
+      "id": "ch0_intro_wake_007",
+      "speaker": "Narration",
+      "text": "A faint blue pulse reveals cracked tables, hanging cables, and a metal apparatus broken open on the floor.",
+      "next": "ch0_choice_wake_response"
+    },
+    {
+      "id": "ch0_intro_corridor_001",
+      "speaker": "Narration",
+      "text": "The corridor beyond the room is narrow and wet. Broken lights hang above doors whose labels have peeled away.",
+      "background": "bg_ch0_abandoned_corridor",
+      "next": "ch0_intro_corridor_002"
+    },
+    {
+      "id": "ch0_intro_corridor_002",
+      "speaker": "Player",
+      "portrait": "char_ch0_main_trainee_historian_portrait",
+      "text": "This was our facility. I know the shape of it. But it looks older than the memories.",
+      "next": "ch0_intro_corridor_003"
+    },
+    {
+      "id": "ch0_intro_corridor_003",
+      "speaker": "Scepticism",
+      "portrait": "char_ch0_ai_scepticism_portrait",
+      "text": "Recognition is not proof. Compare what you remember with what the room can actually support.",
+      "next": "ch0_intro_corridor_004"
+    },
+    {
+      "id": "ch0_intro_corridor_004",
+      "speaker": "Logic",
+      "portrait": "char_ch0_ai_logic_portrait",
+      "text": "The device retains a future calibration. The newspaper was printed in 1919. Both cannot describe one ordinary moment.",
+      "next": "ch0_intro_corridor_005"
+    },
+    {
+      "id": "ch0_intro_corridor_005",
+      "speaker": "Conscience",
+      "portrait": "char_ch0_ai_conscience_portrait",
+      "text": "If you have entered another time, every careless act may reach people who never chose to bear its cost.",
+      "next": "ch0_intro_corridor_006"
+    },
+    {
+      "id": "ch0_intro_corridor_006",
+      "speaker": "Narration",
+      "text": "Far beyond the exit, wheels rattle over stone. No electric traffic answers them. A clock bell sounds through the rain.",
+      "next": "ch0_intro_corridor_007"
+    },
+    {
+      "id": "ch0_intro_corridor_007",
+      "speaker": "Memory",
+      "portrait": "char_ch0_ai_memory_portrait",
+      "text": "Paris... delegates after the Great War... a peace meant to hold. I cannot tell whether that is knowledge or destination.",
+      "next": "ch0_intro_corridor_008"
+    },
+    {
+      "id": "ch0_intro_corridor_008",
+      "speaker": "Player",
+      "portrait": "char_ch0_main_trainee_historian_portrait",
+      "text": "Then I decide from the evidence, not the fear.",
+      "next": "ch0_choice_timeline_conclusion"
+    },
+    {
+      "id": "ch0_intro_end_001",
+      "speaker": "Player",
+      "portrait": "char_ch0_main_trainee_historian_portrait",
+      "text": "I was displaced into the past. The machine failed, and the timeline is no longer stable.",
+      "next": "ch0_intro_end_002"
+    },
+    {
+      "id": "ch0_intro_end_002",
+      "speaker": "Logic",
+      "portrait": "char_ch0_ai_logic_portrait",
+      "text": "Working conclusion accepted. Exact date and location remain unverified. Gather evidence before intervention.",
+      "next": "ch0_intro_end_003"
+    },
+    {
+      "id": "ch0_intro_end_003",
+      "speaker": "Conscience",
+      "portrait": "char_ch0_ai_conscience_portrait",
+      "text": "Understanding what happened is only the first duty. The next is to avoid making the damage worse.",
+      "next": "ch0_intro_end_004"
+    },
+    {
+      "id": "ch0_intro_end_004",
+      "speaker": "Empathy",
+      "portrait": "char_ch0_ai_empathy_portrait",
+      "text": "One step at a time. Survive the corridor. Find the date. Then face what comes after.",
+      "next": "ch0_intro_end_005"
+    },
+    {
+      "id": "ch0_intro_end_005",
+      "speaker": "System",
+      "text": "New objective: Survive. Establish the date. Repair the historical path.",
+      "effects": {
+        "set": {
+          "ch0_timeline_displacement_confirmed": true,
+          "ch0_completed": true,
+          "next_chapter_id": "chapter1_after_world_war_i"
+        }
+      },
+      "next": "ch0_intro_end_006"
+    },
+    {
+      "id": "ch0_intro_end_006",
+      "speaker": "Narration",
+      "text": "You move toward the rain, carrying five fractured voices and one conclusion strong enough to follow."
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+[
+  {
+    "asset_id": "bg_ch0_abandoned_room",
+    "filename": "bg_ch0_abandoned_room.png",
+    "path": "assets/images/chapter0/backgrounds/bg_ch0_abandoned_room.png",
+    "chapter": "chapter0",
+    "type": "background",
+    "dimensions": {
+      "width": 1536,
+      "height": 1024
+    },
+    "status": "final_art",
+    "prompt": "Use case: stylized-concept\nAsset type: final 2D narrative game background for Chapter 0 of Echoes of War\nPrimary request: create an original dark painterly environment of the abandoned research room where the player wakes after a time-travel accident\nScene/backdrop: an underground laboratory room left derelict for years; cracked concrete walls, broken ceiling lights, dusty metal worktables, scattered blank papers, restrained glass fragments, exposed cables hanging and trailing across the floor, debris and shallow puddles; a compact damaged time-device component lies low on the floor and gives off a very faint cold blue light\nStyle/medium: rough oil paint and gouache environment art, broad visible brushwork, scraped pigment, broken shapes, dry-brush texture, imperfect handmade edges, expressive value blocks; painterly game background, not realistic concept rendering\nComposition/framing: strict 3:2 landscape background, wide eye-level view with a slightly low waking perspective; clear foreground debris, readable midground worktables and damaged device, dark background doorway; leave usable darker space in the lower third for dialogue UI; important clues remain readable after portrait-mobile center cropping\nLighting/mood: one failing dirty-ivory overhead light, deep charcoal shadow, faint blue device glow, tiny restrained rust-red emergency-light residue; melancholic, abandoned, psychological, mysterious\nColor palette: black, charcoal, blue-grey, dirty ivory, rust brown, minimal faded red\nMaterials/textures: cracked concrete, oxidized metal, dust, old glass, frayed cables, rough painted surfaces\nConstraints: no people, bodies, silhouettes, faces, text, letters, numbers, signage, logos, UI, frames, watermark, weapons, gore, readable documents, or bright screens; wholly original environment\nAvoid: photorealism, clean sci-fi concept art, glossy 3D rendering, neon cyberpunk, futuristic holograms, pristine machinery, excessive sparks, excessive blue glow, crystal shards, symmetrical composition, cinematic action spectacle"
+  },
+  {
+    "asset_id": "bg_ch0_abandoned_corridor",
+    "filename": "bg_ch0_abandoned_corridor.png",
+    "path": "assets/images/chapter0/backgrounds/bg_ch0_abandoned_corridor.png",
+    "chapter": "chapter0",
+    "type": "background",
+    "dimensions": {
+      "width": 1536,
+      "height": 1024
+    },
+    "status": "final_art",
+    "prompt": "Use case: stylized-concept\nAsset type: final 2D narrative game background for Chapter 0 of Echoes of War\nPrimary request: create an original dark painterly abandoned research-facility corridor leading away from the wake-up room\nScene/backdrop: a long dim underground corridor with cracked concrete walls, hanging wires, several broken fluorescent fixtures, abandoned sealed doors with no readable markings, damp floor puddles, drifting dust, scattered small debris, exposed pipes, and a distant cold blue light at the far bend\nStyle/medium: match the established Chapter 0 environment family: rough oil paint and gouache, broad visible brushwork, scraped pigment, dry-brush texture, broken shapes, imperfect handmade edges, expressive value blocks; painterly game background rather than realistic concept art\nComposition/framing: strict 3:2 landscape, strong corridor depth with an off-centre vanishing point; broad dark foreground and lower third for dialogue UI; doors and cable clusters create clear potential hotspot zones; retain key composition after portrait-mobile center cropping\nLighting/mood: broken dirty-ivory ceiling light in the near foreground, deep charcoal shadows between doors, distant blue-grey light, faint rust-red residue from one dead alarm fixture; lonely, melancholic, suspicious, mysterious\nColor palette: black, charcoal, blue-grey, dirty ivory, rust brown, tiny faded red accents\nMaterials/textures: cracked concrete, oxidized doors, damp floor, frayed electrical cable, peeling paint\nConstraints: no people, silhouettes, faces, text, letters, numbers, signs, logos, UI, borders, watermark, weapons, gore, readable screens, or bright indicators; wholly original environment\nAvoid: photorealism, clean sci-fi corridor, glossy spaceship interior, neon cyberpunk, holograms, pristine symmetry, bright saturated blue, excessive fog, action spectacle, monsters"
+  },
+  {
+    "asset_id": "bg_ch0_time_machine_chamber",
+    "filename": "bg_ch0_time_machine_chamber.png",
+    "path": "assets/images/chapter0/backgrounds/bg_ch0_time_machine_chamber.png",
+    "chapter": "chapter0",
+    "type": "background",
+    "dimensions": {
+      "width": 1536,
+      "height": 1024
+    },
+    "status": "final_art",
+    "prompt": "Use case: stylized-concept\nAsset type: final 2D narrative game background for Chapter 0 flashback, intact time-machine chamber\nPrimary request: create an original painterly secret underground research chamber shortly before the accident, showing the intact time-machine apparatus\nScene/backdrop: the cleaner earlier version of the same underground facility architecture; a large central experimental time-machine apparatus made from heavy concentric metal rings, restrained cables, structural supports, and a dark core; observation windows along the rear wall, practical lab consoles on both sides with blank dark displays, polished but imperfect concrete floor, sealed industrial walls\nStyle/medium: same Chapter 0 rough oil-paint and gouache environment language, visible brushwork, scraped pigment, blocky architectural planes, dry-brush texture, imperfect handmade edges; controlled and functional but still painterly, never sleek clean sci-fi\nComposition/framing: strict 3:2 landscape, symmetrical foundation made deliberately imperfect; central apparatus is the clear focal point with side consoles forming depth; broad darker lower third for dialogue UI; focal structure remains readable after portrait-mobile center cropping\nLighting/mood: cold controlled blue-grey work light from above and within the inactive apparatus, dirty-ivory edge light, deep charcoal corners; clinical, secretive, restrained, ominous calm before failure\nColor palette: charcoal, steel blue-grey, dirty ivory, desaturated concrete, small rust-brown joints; no red alarm light in this intact state\nMaterials/textures: heavy painted steel, concrete, thick glass observation windows, rubber cable, worn polished floor\nConstraints: no people, silhouettes, faces, text, letters, numbers, signage, logos, UI, borders, watermark, readable monitor content, floating interfaces, or weapons; wholly original machinery\nAvoid: photorealism, glossy sci-fi concept art, spaceship bridge, neon cyberpunk, holograms, portal fantasy, excessive blue energy, glowing magical ring, pristine white laboratory, polished 3D, perfect symmetry, brand-like symbols"
+  },
+  {
+    "asset_id": "bg_ch0_destroyed_lab_flashback",
+    "filename": "bg_ch0_destroyed_lab_flashback.png",
+    "path": "assets/images/chapter0/backgrounds/bg_ch0_destroyed_lab_flashback.png",
+    "chapter": "chapter0",
+    "type": "background",
+    "dimensions": {
+      "width": 1536,
+      "height": 1024
+    },
+    "status": "final_art",
+    "prompt": "Use case: lighting-weather\nAsset type: final 2D narrative game background for Chapter 0 accident flashback\nInput images: Image 1 is the intact time-machine chamber generated immediately before this image; preserve the chamber architecture, camera angle, observation windows, side-console placement, and recognisable central apparatus so this is clearly the same location during or immediately after failure\nPrimary request: transform the intact chamber into the time-travel accident aftermath\nScene changes: rupture and partially collapse the central time-machine rings; break the side consoles; crack and shatter portions of the observation glass; add dense dark smoke, restrained falling sparks, scattered machinery pieces, severed cables, and floor debris; introduce intense but localized blue-white energy tearing through the damaged core and faint red warning illumination across selected surfaces\nStyle/medium: preserve the rough oil-paint and gouache environment style, broad visible brushwork, scraped pigment, dry-brush texture, broken shapes, imperfect handmade edges; maintain painterly abstraction rather than polished spectacle\nComposition/framing: strict 3:2 landscape; preserve the original camera and layout; central rupture is the focal point; keep the lower third dark enough for dialogue UI; key damage remains readable after portrait-mobile center cropping\nLighting/mood: violent blue-white core light against deep charcoal smoke, sparse faded red alarm light, dirty-ivory sparks; catastrophic, disorienting, psychological, tragic\nColor palette: black, charcoal, blue-grey, dirty ivory, rust brown, restrained faded red, localized blue-white\nConstraints: no people, bodies, silhouettes, faces, text, letters, numbers, signs, logos, UI, borders, watermark, blood, gore, readable displays, or weapons\nAvoid: changing into a different chamber, photorealism, glossy sci-fi action art, neon cyberpunk, giant magical portal, lightning filling the whole frame, excessive sparks, excessive red saturation, explosions, fireball spectacle, clean 3D rendering"
+  },
+  {
+    "asset_id": "bg_ch0_memory_void",
+    "filename": "bg_ch0_memory_void.png",
+    "path": "assets/images/chapter0/backgrounds/bg_ch0_memory_void.png",
+    "chapter": "chapter0",
+    "type": "background",
+    "dimensions": {
+      "width": 1536,
+      "height": 1024
+    },
+    "status": "final_art",
+    "prompt": "Use case: stylized-concept\nAsset type: final 2D narrative game background for Chapter 0 abstract memory space\nPrimary request: create an original psychological memory void representing damaged recollection after the time-travel accident\nScene/backdrop: a near-black empty space containing floating irregular painted fragments of the research facility: incomplete observation-window rectangles, broken suggestions of the time-machine rings, blurred console shapes, a corridor vanishing into nothing, and smeared architectural silhouettes; fragments are suspended at different depths and dissolve into rough brush strokes; a distant blue-white memory light leaks through gaps\nStyle/medium: dark rough oil paint and gouache abstraction, scraped pigment, dry brush, rubbed archival texture, broken geometric and organic shapes, unfinished edges, layered opacity; psychological environment art, not a literal outer-space scene\nComposition/framing: strict 3:2 landscape; an off-centre corridor of fragments leads toward a small distant memory light; broad dark lower third for dialogue UI; central grouping remains readable after portrait-mobile center cropping\nLighting/mood: faint blue-white illumination, deep charcoal void, occasional dirty-ivory and rust-brown residue, tiny restrained faded-red traces; unstable, melancholic, disorienting, introspective\nColor palette: black, charcoal, blue-grey, dirty ivory, muted violet-grey, rust brown, extremely restrained faded red\nMaterials/textures: painted memory layers, rubbed concrete impressions, scraped glass-like marks without literal crystals\nConstraints: no characters, people, bodies, human silhouettes, faces, text, letters, numbers, signs, logos, UI, frames, watermark, stars, planets, magical symbols, readable documents, or literal floating crystal shards; wholly original\nAvoid: photorealism, clean sci-fi void, outer space, neon cyberpunk, fantasy portal, glowing crystal field, bright magical overload, glossy 3D, horror ghost scene, symmetrical composition"
+  }
+]
