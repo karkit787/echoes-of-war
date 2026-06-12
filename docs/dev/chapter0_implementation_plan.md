@@ -54,7 +54,7 @@ without becoming a full syllabus lesson. Its educational emphasis is:
 
 - The project will be initialized in a confirmed Cocos Creator version before
   scene or prefab files are authored.
-- Chapter 0 will use one engine scene, `Chapter0Prologue.scene`.
+- Chapter 0 will use one engine scene, `Chapter0.scene`.
 - Narrative sections will be data-driven and advanced by a `ChapterRunner`.
 - Authored content under `content/` will be the source of truth.
 - Validated runtime copies will be placed under `assets/resources/`.
@@ -272,7 +272,7 @@ Ending:
 ## Scene Flow
 
 ```text
-Chapter0Prologue.scene
+Chapter0.scene
   -> ch0_awakening
   -> ch0_facility_investigation
   -> ch0_memory_reconstruction
@@ -778,7 +778,7 @@ tests/gameplay/chapter0_save_load.test.ts
 After Cocos initialization:
 
 ```text
-assets/scenes/Chapter0Prologue.scene
+assets/scenes/Chapter0.scene
 
 assets/prefabs/ui/DialoguePanel.prefab
 assets/prefabs/ui/CompanionPanel.prefab
@@ -898,7 +898,7 @@ Exit condition:
 
 ### Functional
 
-- `Chapter0Prologue.scene` runs from beginning to completion.
+- `Chapter0.scene` runs from beginning to completion.
 - The player can advance dialogue using touch input.
 - The player can inspect all required interactables.
 - Investigation order may vary without breaking progression.

@@ -1,6 +1,5 @@
 import {
   _decorator,
-  Button,
   Color,
   Component,
   Graphics,
@@ -9,10 +8,10 @@ import {
   Layout,
   Node,
   Prefab,
-  Sprite,
   UITransform,
 } from 'cc';
 import { DialogueChoice } from '../dialogue/DialogueTypes';
+import { DialogueChoiceButton } from './DialogueChoiceButton';
 import {
   colorFromHex,
   DialogueThemeData,
@@ -62,23 +61,14 @@ export class DialogueChoiceList extends Component {
       buttonNode.name = `DialogueChoice_${index}`;
       buttonNode.parent = container;
 
-      const label = buttonNode.getComponentInChildren(Label);
-      if (label) {
-        label.string = choice.label;
-        label.color = colorFromHex(this.theme.choiceTextColor);
-      }
-
-      const sprite = buttonNode.getComponent(Sprite);
-      if (sprite) {
-        sprite.color = colorFromHex(this.theme.choiceColor);
-      }
-
-      const button =
-        buttonNode.getComponent(Button) ?? buttonNode.addComponent(Button);
-      buttonNode.on(
-        Button.EventType.CLICK,
-        () => onSelect(index),
-        this,
+      const choiceButton =
+        buttonNode.getComponent(DialogueChoiceButton) ??
+        buttonNode.addComponent(DialogueChoiceButton);
+      choiceButton.configure(
+        index,
+        choice.label,
+        onSelect,
+        this.theme,
       );
     });
 
@@ -108,17 +98,6 @@ export class DialogueChoiceList extends Component {
     const graphics = buttonNode.addComponent(Graphics);
     const width = this.fallbackButtonWidth;
     const height = this.fallbackButtonHeight;
-    const notch = 5;
-    graphics.fillColor = colorFromHex(this.theme.choiceColor);
-    graphics.strokeColor = colorFromHex(this.theme.panelEdgeColor);
-    graphics.lineWidth = 1;
-    graphics.moveTo(-width / 2 + notch, -height / 2);
-    graphics.lineTo(width / 2 - 2, -height / 2 + 2);
-    graphics.lineTo(width / 2, height / 2 - notch);
-    graphics.lineTo(-width / 2 + 2, height / 2);
-    graphics.close();
-    graphics.fill();
-    graphics.stroke();
 
     const labelNode = new Node('Label');
     labelNode.parent = buttonNode;
@@ -129,6 +108,10 @@ export class DialogueChoiceList extends Component {
     label.lineHeight = 28;
     label.overflow = Label.Overflow.SHRINK;
     label.color = colorFromHex(this.theme.choiceTextColor, Color.WHITE);
+
+    const choiceButton = buttonNode.addComponent(DialogueChoiceButton);
+    choiceButton.label = label;
+    choiceButton.backgroundGraphics = graphics;
 
     return buttonNode;
   }

@@ -19,6 +19,20 @@ export class DialoguePortrait extends Component {
   @property([DialoguePortraitEntry])
   public portraits: DialoguePortraitEntry[] = [];
 
+  public replacePortraits(
+    portraits: readonly {
+      assetId: string;
+      spriteFrame: SpriteFrame;
+    }[],
+  ): void {
+    this.portraits = portraits.map((portrait) => {
+      const entry = new DialoguePortraitEntry();
+      entry.assetId = portrait.assetId;
+      entry.spriteFrame = portrait.spriteFrame;
+      return entry;
+    });
+  }
+
   public show(assetId?: string): void {
     if (!assetId || !this.portraitSprite) {
       this.node.active = false;
@@ -35,4 +49,3 @@ export class DialoguePortrait extends Component {
     this.node.active = true;
   }
 }
-

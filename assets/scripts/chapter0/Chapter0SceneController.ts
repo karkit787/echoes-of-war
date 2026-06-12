@@ -4,6 +4,8 @@ import {
   JsonAsset,
   Label,
   Node,
+  resources,
+  SpriteFrame,
   UITransform,
   Vec3,
 } from 'cc';
@@ -12,13 +14,14 @@ import {
   createChapter0Progress,
   createInitialChapter0DialogueState,
 } from '../core/ChapterProgressState';
+import { SpeakerProfile } from '../core/SpeakerRegistry';
 import { DialogueManager } from '../dialogue/DialogueManager';
 import {
+  DIALOGUE_SPEAKERS,
   DialogueDocument,
 } from '../dialogue/DialogueTypes';
 import { BackgroundSwitcher } from '../ui/BackgroundSwitcher';
 import { DialogueBox } from '../ui/DialogueBox';
-import { MemoryFlashbackController } from '../ui/MemoryFlashbackController';
 import { ScreenFader } from '../ui/ScreenFader';
 import { TimelineInstabilityIndicator } from '../ui/TimelineInstabilityIndicator';
 import {
@@ -27,9 +30,10 @@ import {
   Chapter0FlowViewState,
 } from './Chapter0FlowController';
 import {
-  InteractableObject,
+  Chapter0Interactable,
   NormalizedHotspotRect,
-} from '../player/InteractableObject';
+} from './Chapter0Interactable';
+import { MemoryFlashbackController } from './MemoryFlashbackController';
 
 const { ccclass, property } = _decorator;
 
@@ -52,13 +56,29 @@ const DEFAULT_HOTSPOT_LAYOUTS: Record<string, NormalizedHotspotRect> = {
   exit_corridor: { x: 0.91, y: 0.5, width: 0.14, height: 0.28 },
 };
 
+interface Chapter0ResourceEntry {
+  assetId: string;
+  resource: string;
+}
+
+interface Chapter0DialogueResource {
+  fileId: string;
+  resource: string;
+}
+
+interface Chapter0Manifest {
+  schemaVersion: number;
+  chapterId: string;
+  entryNodeId: string;
+  dialogueDocuments: Chapter0DialogueResource[];
+  backgrounds: Chapter0ResourceEntry[];
+  speakers: SpeakerProfile[];
+}
+
 @ccclass('Chapter0SceneController')
 export class Chapter0SceneController extends Component {
   @property(DialogueBox)
   public dialogueBox: DialogueBox | null = null;
-
-  @property({ type: [JsonAsset] })
-  public dialogueFiles: JsonAsset[] = [];
 
   @property(BackgroundSwitcher)
   public backgroundSwitcher: BackgroundSwitcher | null = null;
@@ -75,14 +95,17 @@ export class Chapter0SceneController extends Component {
   @property(Node)
   public investigationRoot: Node | null = null;
 
-  @property([InteractableObject])
-  public interactables: InteractableObject[] = [];
+  @property([Chapter0Interactable])
+  public interactables: Chapter0Interactable[] = [];
 
   @property
   public autoCreateMissingHotspots = true;
 
   @property
-  public entryNodeId = 'ch0_intro_wake_001';
+  public manifestResource = 'dialogue/chapter0/ch0_manifest';
+
+  @property
+  public entryNodeIdOverride = '';
 
   private dialogueManager: DialogueManager | null = null;
   private flowController: Chapter0FlowController | null = null;
@@ -92,43 +115,7 @@ export class Chapter0SceneController extends Component {
   private lastInvestigationHeight = -1;
 
   protected start(): void {
-    if (!this.dialogueBox) {
-      console.error('[Chapter0SceneController] DialogueBox is not assigned.');
-      return;
-    }
-    if (this.dialogueFiles.length === 0) {
-      console.error(
-        '[Chapter0SceneController] Assign all five Chapter 0 dialogue JSON assets.',
-      );
-      return;
-    }
-
-    try {
-      const documents = this.dialogueFiles.map(
-        (asset) => asset.json as DialogueDocument,
-      );
-      this.assertDialogueDocuments(documents);
-      this.dialogueManager = new DialogueManager(
-        documents,
-        createInitialChapter0DialogueState(),
-      );
-      this.flowController = new Chapter0FlowController(this.dialogueManager);
-      this.dialogueBox.bind(this.dialogueManager);
-    } catch (error) {
-      console.error(
-        '[Chapter0SceneController] Chapter 0 could not start.',
-        error,
-      );
-      return;
-    }
-
-    this.prepareInteractables();
-    this.unsubscribeFlow = this.flowController.subscribe((viewState) =>
-      this.renderScene(viewState),
-    );
-    this.backgroundSwitcher?.show('bg_ch0_abandoned_room', true);
-    this.dialogueManager.start(this.entryNodeId);
-    this.screenFader?.fadeInFromBlack();
+    void this.initialize();
   }
 
   protected lateUpdate(): void {
@@ -162,6 +149,48 @@ export class Chapter0SceneController extends Component {
     this.flowController?.restoreBackground(progress.backgroundAssetId);
   }
 
+  private async initialize(): Promise<void> {
+    if (!this.dialogueBox) {
+      console.error('[Chapter0SceneController] DialogueBox is not assigned.');
+      return;
+    }
+
+    try {
+      const manifest = await this.loadManifest();
+      const entryNodeId =
+        this.entryNodeIdOverride.trim() || manifest.entryNodeId;
+      const [documents, backgrounds, portraits] = await Promise.all([
+        this.loadDialogueDocuments(manifest),
+        this.loadBackgrounds(manifest),
+        this.loadPortraits(manifest),
+      ]);
+
+      this.assertDialogueDocuments(documents, entryNodeId);
+      this.backgroundSwitcher?.replaceBackgrounds(backgrounds);
+      this.dialogueBox.setSpeakerProfiles(manifest.speakers);
+      this.dialogueBox.replacePortraits(portraits);
+      this.dialogueManager = new DialogueManager(
+        documents,
+        createInitialChapter0DialogueState(),
+      );
+      this.flowController = new Chapter0FlowController(this.dialogueManager);
+      this.dialogueBox.bind(this.dialogueManager);
+
+      this.prepareInteractables();
+      this.unsubscribeFlow = this.flowController.subscribe((viewState) =>
+        this.renderScene(viewState),
+      );
+      this.backgroundSwitcher?.show('bg_ch0_abandoned_room', true);
+      this.dialogueManager.start(entryNodeId);
+      this.screenFader?.fadeInFromBlack();
+    } catch (error) {
+      console.error(
+        '[Chapter0SceneController] Chapter 0 could not start.',
+        error,
+      );
+    }
+  }
+
   private prepareInteractables(): void {
     const root = this.investigationRoot;
     if (!root) {
@@ -173,12 +202,11 @@ export class Chapter0SceneController extends Component {
 
     const existing = new Map(
       this.interactables
-        .concat(root.getComponentsInChildren(InteractableObject))
+        .concat(root.getComponentsInChildren(Chapter0Interactable))
         .filter((interactable) => interactable.interactableId)
         .map((interactable) => [interactable.interactableId, interactable]),
     );
 
-    // Runtime generation keeps the vertical slice usable before prefab metadata exists.
     if (this.autoCreateMissingHotspots) {
       for (const definition of CHAPTER0_INTERACTABLES) {
         if (existing.has(definition.id)) {
@@ -200,7 +228,8 @@ export class Chapter0SceneController extends Component {
         label.overflow = Label.Overflow.SHRINK;
         label.string = definition.displayName;
 
-        const interactable = hotspotNode.addComponent(InteractableObject);
+        const interactable =
+          hotspotNode.addComponent(Chapter0Interactable);
         interactable.label = label;
         interactable.showWhenLocked = definition.id === 'exit_corridor';
         interactable.configure(
@@ -215,7 +244,7 @@ export class Chapter0SceneController extends Component {
     this.interactables = CHAPTER0_INTERACTABLES.map((definition) =>
       existing.get(definition.id),
     ).filter(
-      (interactable): interactable is InteractableObject =>
+      (interactable): interactable is Chapter0Interactable =>
         interactable !== undefined,
     );
 
@@ -231,6 +260,7 @@ export class Chapter0SceneController extends Component {
 
   private assertDialogueDocuments(
     documents: readonly DialogueDocument[],
+    entryNodeId: string,
   ): void {
     const fileIds = new Set(documents.map((document) => document.fileId));
     const missing = [...REQUIRED_DIALOGUE_FILE_IDS].filter(
@@ -242,11 +272,153 @@ export class Chapter0SceneController extends Component {
         `Missing required Chapter 0 dialogue files: ${missing.join(', ')}.`,
       );
     }
-    if (!documents.some((document) =>
-      document.nodes.some((node) => node.id === this.entryNodeId),
-    )) {
-      throw new Error(`Entry node '${this.entryNodeId}' is not loaded.`);
+    if (
+      !documents.some((document) =>
+        document.nodes.some((node) => node.id === entryNodeId),
+      )
+    ) {
+      throw new Error(`Entry node '${entryNodeId}' is not loaded.`);
     }
+  }
+
+  private async loadManifest(): Promise<Chapter0Manifest> {
+    const manifestAsset = await this.loadJsonAsset(this.manifestResource);
+    const manifest = manifestAsset.json as Chapter0Manifest;
+    this.assertManifest(manifest);
+    return manifest;
+  }
+
+  private assertManifest(manifest: Chapter0Manifest): void {
+    if (manifest.schemaVersion !== 1) {
+      throw new Error(
+        `Unsupported Chapter 0 manifest version '${manifest.schemaVersion}'.`,
+      );
+    }
+
+    const dialogueIds = new Set(
+      manifest.dialogueDocuments.map((entry) => entry.fileId),
+    );
+    const missingDialogue = [...REQUIRED_DIALOGUE_FILE_IDS].filter(
+      (fileId) => !dialogueIds.has(fileId),
+    );
+    if (missingDialogue.length > 0) {
+      throw new Error(
+        `Manifest is missing dialogue files: ${missingDialogue.join(', ')}.`,
+      );
+    }
+
+    for (const entry of manifest.dialogueDocuments) {
+      if (!entry.resource.startsWith('dialogue/chapter0/')) {
+        throw new Error(
+          `Dialogue resource '${entry.resource}' is outside dialogue/chapter0.`,
+        );
+      }
+    }
+    for (const entry of manifest.backgrounds) {
+      if (!entry.resource.startsWith('images/chapter0/backgrounds/')) {
+        throw new Error(
+          `Background resource '${entry.resource}' is outside images/chapter0/backgrounds.`,
+        );
+      }
+    }
+
+    const speakers = new Set(
+      manifest.speakers.map((profile) => profile.speaker),
+    );
+    const missingSpeakers = DIALOGUE_SPEAKERS.filter(
+      (speaker) => !speakers.has(speaker),
+    );
+    if (missingSpeakers.length > 0) {
+      throw new Error(
+        `Manifest is missing speakers: ${missingSpeakers.join(', ')}.`,
+      );
+    }
+    for (const profile of manifest.speakers) {
+      if (
+        profile.portraitResource &&
+        !profile.portraitResource.startsWith(
+          'images/chapter0/characters/',
+        )
+      ) {
+        throw new Error(
+          `Portrait resource '${profile.portraitResource}' is outside images/chapter0/characters.`,
+        );
+      }
+    }
+  }
+
+  private async loadDialogueDocuments(
+    manifest: Chapter0Manifest,
+  ): Promise<DialogueDocument[]> {
+    return Promise.all(
+      manifest.dialogueDocuments.map(async (entry) => {
+        const asset = await this.loadJsonAsset(entry.resource);
+        const document = asset.json as DialogueDocument;
+        if (document.fileId !== entry.fileId) {
+          throw new Error(
+            `Dialogue resource '${entry.resource}' declared fileId '${document.fileId}', expected '${entry.fileId}'.`,
+          );
+        }
+        return document;
+      }),
+    );
+  }
+
+  private async loadBackgrounds(
+    manifest: Chapter0Manifest,
+  ): Promise<{ assetId: string; spriteFrame: SpriteFrame }[]> {
+    return Promise.all(
+      manifest.backgrounds.map(async (entry) => ({
+        assetId: entry.assetId,
+        spriteFrame: await this.loadSpriteFrame(entry.resource),
+      })),
+    );
+  }
+
+  private async loadPortraits(
+    manifest: Chapter0Manifest,
+  ): Promise<{ assetId: string; spriteFrame: SpriteFrame }[]> {
+    const profiles = manifest.speakers.filter(
+      (profile) => profile.portraitAssetId && profile.portraitResource,
+    );
+    return Promise.all(
+      profiles.map(async (profile) => ({
+        assetId: profile.portraitAssetId!,
+        spriteFrame: await this.loadSpriteFrame(profile.portraitResource!),
+      })),
+    );
+  }
+
+  private loadJsonAsset(resourcePath: string): Promise<JsonAsset> {
+    return new Promise((resolve, reject) => {
+      resources.load(resourcePath, JsonAsset, (error, asset) => {
+        if (error || !asset) {
+          reject(
+            new Error(
+              `Could not load JSON resource '${resourcePath}': ${error?.message ?? 'unknown error'}`,
+            ),
+          );
+          return;
+        }
+        resolve(asset);
+      });
+    });
+  }
+
+  private loadSpriteFrame(resourcePath: string): Promise<SpriteFrame> {
+    return new Promise((resolve, reject) => {
+      resources.load(resourcePath, SpriteFrame, (error, asset) => {
+        if (error || !asset) {
+          reject(
+            new Error(
+              `Could not load SpriteFrame resource '${resourcePath}': ${error?.message ?? 'unknown error'}`,
+            ),
+          );
+          return;
+        }
+        resolve(asset);
+      });
+    });
   }
 
   private renderScene(viewState: Chapter0FlowViewState): void {
@@ -262,7 +434,9 @@ export class Chapter0SceneController extends Component {
 
     const available = new Set(viewState.availableInteractableIds);
     for (const interactable of this.interactables) {
-      interactable.setAvailable(available.has(interactable.interactableId));
+      interactable.setAvailable(
+        available.has(interactable.interactableId),
+      );
     }
 
     this.flashbackController?.setFlashback(
@@ -276,10 +450,7 @@ export class Chapter0SceneController extends Component {
 
     if (viewState.chapterComplete && !this.completionEmitted) {
       this.completionEmitted = true;
-      this.node.emit(
-        'chapter0-complete',
-        this.createProgressSnapshot(),
-      );
+      this.node.emit('chapter0-complete', this.createProgressSnapshot());
     }
   }
 

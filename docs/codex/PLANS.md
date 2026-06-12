@@ -87,9 +87,9 @@ mobile-responsive Cocos bindings.
 
 ### Current context
 
-The repository has Chapter 0 JSON and art assets but is not yet an initialized
-Cocos Creator project. Scene, prefab, metadata, and engine compilation must
-therefore wait for an exact editor version.
+The repository is now an initialized Cocos Creator 3.8.8 project with imported
+Chapter 0 JSON, art, scripts, and generated metadata. Scene and prefab
+serialization still require editor binding.
 
 ### Design
 
@@ -111,8 +111,8 @@ therefore wait for an exact editor version.
 - Complete: dialogue box, portrait registry, choice list, history panel, theme.
 - Complete: editable theme, original panel textures, minimal JSON demo.
 - Complete: binding and responsive-layout documentation.
-- Pending external prerequisite: initialize Cocos Creator and serialize the
-  demo scene/prefab through the editor.
+- Complete: initialize Cocos Creator 3.8.8 and import existing assets.
+- Pending editor task: serialize the demo scene/prefab through the editor.
 
 ## ExecPlan: Chapter 0 Playable Vertical Slice
 
@@ -138,8 +138,18 @@ choices, corridor transition, timeline warning, and completion state.
 - Complete: Cocos hotspot, background, flashback, fade, and timeline components.
 - Complete: `Chapter0SceneController` integration and completion event.
 - Complete: deterministic full playthrough through five objects and corridor.
-- Pending external prerequisite: initialize Cocos Creator, bind imported
-  SpriteFrames/JsonAssets, and serialize `Chapter0Prologue.scene` in the editor.
+- Complete: initialize Cocos Creator 3.8.8 and import SpriteFrames/JsonAssets.
+- Complete: serialize the initial `Chapter0.scene` Canvas/Camera shell.
+- Complete: migrate Chapter 0 dialogue, backgrounds, portraits, and UI artwork
+  into the required `assets/resources/` hierarchy with metadata preserved.
+- Complete: add manifest-driven resource loading, speaker registry, reusable
+  choice buttons, and chapter-owned interactable/flashback components.
+- Complete: document the exact `Chapter0.scene` hierarchy and Inspector
+  bindings.
+- Complete: add an idempotent Cocos project extension that builds, binds,
+  validates, and saves the documented Chapter 0 hierarchy.
+- Pending editor verification: run the extension command and visually preview
+  the saved `Chapter0.scene`.
 
 ## ExecPlan: Chapter 0 Integration, Polish, And QA
 
@@ -157,4 +167,8 @@ faults, and leave a repeatable automated and manual playtest process.
 - Complete: fixed mid-flashback save restoration to preserve background state.
 - Complete: added clean startup errors for missing dialogue documents.
 - Complete: added developer summary and manual playtest checklist.
-- Pending external prerequisite: initialize and run the scene in Cocos Creator.
+- Complete: compile against Cocos Creator 3.8.8 declarations and run the
+  deterministic content/gameplay QA.
+- Complete: automate all required Chapter 0 scene hierarchy and Inspector
+  bindings through the Cocos scene process.
+- Pending editor verification: run and visually preview `Chapter0.scene`.

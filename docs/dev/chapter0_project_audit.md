@@ -3,6 +3,9 @@
 **Audit date:** 12 June 2026  
 **Repository state inspected:** `feature/chapter-0` at commit `1e19461`
 
+> Historical snapshot: this audit predates the Cocos Creator 3.8.8
+> initialization and is superseded by `docs/dev/cocos_migration_plan.md`.
+
 ## Executive Summary
 
 Echoes of War currently contains a documented Cocos Creator and TypeScript
@@ -214,7 +217,7 @@ validation.
 These paths fit the existing scaffold:
 
 ```text
-assets/scenes/Chapter0Prologue.scene
+assets/scenes/Chapter0.scene
 
 assets/prefabs/ui/DialoguePanel.prefab
 assets/prefabs/ui/CompanionPanel.prefab
@@ -278,6 +281,6 @@ copies do not drift.
 
 Create an execution plan in `docs/codex/PLANS.md` for a Chapter 0 vertical
 slice, beginning with Cocos Creator initialization and version confirmation.
-Then implement a minimal `Chapter0Prologue.scene` that loads validated local
+Then implement a minimal `Chapter0.scene` that loads validated local
 JSON, displays the existing portraits through reusable UI prefabs, and runs
 entirely with scripted companion responses.

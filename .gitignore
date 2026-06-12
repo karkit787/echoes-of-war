@@ -18,6 +18,9 @@ node_modules/
 #//////////////////////////
 .vscode/
 
+# Cocos editor-generated help shortcut; custom templates remain trackable.
+.creator/asset-template/**/*.url
+
 #//////////////////////////
 # WebStorm
 #//////////////////////////

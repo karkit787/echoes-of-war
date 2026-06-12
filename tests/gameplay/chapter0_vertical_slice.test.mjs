@@ -41,7 +41,13 @@ globalThis.CHAPTER0_INTERACTABLES = CHAPTER0_INTERACTABLES;`,
 }
 
 function loadDocuments() {
-  const directory = path.join(repoRoot, 'assets', 'dialogue', 'chapter0');
+  const directory = path.join(
+    repoRoot,
+    'assets',
+    'resources',
+    'dialogue',
+    'chapter0',
+  );
   return [
     'ch0_intro.json',
     'ch0_room_inspections.json',

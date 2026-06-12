@@ -1,5 +1,8 @@
 # Chapter 0 Implementation Summary
 
+> The current Cocos resource integration is documented in
+> `docs/dev/chapter0_integration_summary.md`.
+
 ## Current Result
 
 Chapter 0 now has a complete data-driven vertical-slice implementation:
@@ -226,8 +229,10 @@ Paris Peace Conference facts or authored dialogue inside Cocos UI components.
 
 ## Build And Test
 
-There is currently no Cocos build command, `package.json`, `tsconfig.json`,
-project manifest, or editor CLI in the repository.
+The repository now contains Cocos Creator 3.8.8 project metadata,
+`package.json`, `tsconfig.json`, imported asset `.meta` files, and an initial
+`assets/scenes/Chapter0.scene` Canvas/Camera shell. Gameplay scene bindings and
+prefabs are not yet serialized.
 
 The available integration command is:
 

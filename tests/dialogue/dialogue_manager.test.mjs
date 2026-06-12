@@ -47,6 +47,7 @@ function loadChapter0Documents() {
   const dialogueDirectory = path.join(
     repoRoot,
     'assets',
+    'resources',
     'dialogue',
     'chapter0',
   );
@@ -97,4 +98,3 @@ assert.equal(
 );
 
 console.log('DialogueManager runtime test passed.');
-

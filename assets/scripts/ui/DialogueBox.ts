@@ -6,9 +6,14 @@ import {
   JsonAsset,
   Label,
   Sprite,
+  SpriteFrame,
   UITransform,
 } from 'cc';
 import { DialogueManager } from '../dialogue/DialogueManager';
+import {
+  SpeakerProfile,
+  SpeakerRegistry,
+} from '../core/SpeakerRegistry';
 import {
   DialogueSpeaker,
   DialogueViewState,
@@ -82,6 +87,7 @@ export class DialogueBox extends Component {
   public continueButtonText = 'Continue';
 
   private manager: DialogueManager | null = null;
+  private readonly speakerRegistry = new SpeakerRegistry();
   private unsubscribe: (() => void) | null = null;
   private theme: DialogueThemeData = DEFAULT_DIALOGUE_THEME;
   private currentViewState: DialogueViewState | null = null;
@@ -147,6 +153,19 @@ export class DialogueBox extends Component {
     );
   }
 
+  public setSpeakerProfiles(profiles: readonly SpeakerProfile[]): void {
+    this.speakerRegistry.replace(profiles);
+  }
+
+  public replacePortraits(
+    portraits: readonly {
+      assetId: string;
+      spriteFrame: SpriteFrame;
+    }[],
+  ): void {
+    this.portrait?.replacePortraits(portraits);
+  }
+
   public setTheme(theme: DialogueThemeData): void {
     this.theme = theme;
     this.choiceList?.setTheme(theme);
@@ -190,17 +209,23 @@ export class DialogueBox extends Component {
 
     const node = viewState.node;
     const style = this.theme.speakers[node.speaker];
+    const speakerProfile = this.speakerRegistry.get(node.speaker);
 
     if (this.speakerLabel) {
-      this.speakerLabel.string = style.displayName;
+      this.speakerLabel.string =
+        speakerProfile.displayName || style.displayName;
       this.speakerLabel.color = colorFromHex(style.nameColor);
     }
     if (this.dialogueLabel) {
       this.dialogueLabel.color = colorFromHex(style.bodyColor);
     }
 
-    this.applySpeakerChrome(node.speaker);
-    this.portrait?.show(style.showPortrait ? node.portrait : undefined);
+    this.applySpeakerChrome(node.speaker, speakerProfile.accent);
+    this.portrait?.show(
+      style.showPortrait
+        ? node.portrait ?? speakerProfile.portraitAssetId
+        : undefined,
+    );
     this.beginTextReveal(node.text);
   }
 
@@ -301,9 +326,12 @@ export class DialogueBox extends Component {
     this.historyPanel.open(this.currentViewState.history);
   }
 
-  private applySpeakerChrome(speaker: DialogueSpeaker): void {
+  private applySpeakerChrome(
+    speaker: DialogueSpeaker,
+    registryAccent?: string,
+  ): void {
     const style = this.theme.speakers[speaker];
-    const accentColor = colorFromHex(style.accent);
+    const accentColor = colorFromHex(registryAccent || style.accent);
 
     if (this.accentSprite) {
       this.accentSprite.color = accentColor;
@@ -384,4 +412,3 @@ export class DialogueBox extends Component {
     }
   }
 }
-

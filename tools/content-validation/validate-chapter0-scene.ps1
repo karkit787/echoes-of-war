@@ -7,13 +7,17 @@ $errors = [System.Collections.Generic.List[string]]::new()
 
 $requiredFiles = @(
     "assets\scripts\core\ChapterProgressState.ts",
+    "assets\scripts\core\SpeakerRegistry.ts",
     "assets\scripts\chapter0\Chapter0FlowController.ts",
     "assets\scripts\chapter0\Chapter0SceneController.ts",
-    "assets\scripts\player\InteractableObject.ts",
+    "assets\scripts\chapter0\Chapter0Interactable.ts",
+    "assets\scripts\chapter0\MemoryFlashbackController.ts",
     "assets\scripts\ui\BackgroundSwitcher.ts",
-    "assets\scripts\ui\MemoryFlashbackController.ts",
+    "assets\scripts\ui\DialogueChoiceButton.ts",
     "assets\scripts\ui\ScreenFader.ts",
     "assets\scripts\ui\TimelineInstabilityIndicator.ts",
+    "assets\resources\dialogue\chapter0\ch0_manifest.json",
+    "assets\scenes\Chapter0.scene",
     "tests\gameplay\chapter0_vertical_slice.test.mjs",
     "tests\gameplay\chapter0_qa.test.mjs",
     "docs\dev\chapter0_playable_scene.md",
@@ -36,7 +40,7 @@ $requiredBackgrounds = @(
 )
 
 foreach ($filename in $requiredBackgrounds) {
-    $path = Join-Path $repoRoot "assets\images\chapter0\backgrounds\$filename"
+    $path = Join-Path $repoRoot "assets\resources\images\chapter0\backgrounds\$filename"
     if (-not (Test-Path -LiteralPath $path -PathType Leaf)) {
         $errors.Add("Missing Chapter 0 background: $filename")
     }
@@ -52,7 +56,7 @@ $requiredPortraits = @(
 )
 
 foreach ($filename in $requiredPortraits) {
-    $path = Join-Path $repoRoot "assets\images\chapter0\characters\$filename"
+    $path = Join-Path $repoRoot "assets\resources\images\chapter0\characters\$filename"
     if (-not (Test-Path -LiteralPath $path -PathType Leaf)) {
         $errors.Add("Missing Chapter 0 portrait: $filename")
     }
@@ -62,7 +66,6 @@ $sourceDirectories = @(
     "assets\scripts\chapter0",
     "assets\scripts\core",
     "assets\scripts\dialogue",
-    "assets\scripts\player",
     "assets\scripts\ui"
 )
 

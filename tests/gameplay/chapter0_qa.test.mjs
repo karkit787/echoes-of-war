@@ -47,7 +47,13 @@ globalThis.CHAPTER0_INTERACTABLES = CHAPTER0_INTERACTABLES;`,
 }
 
 function loadDocuments() {
-  const directory = path.join(repoRoot, 'assets', 'dialogue', 'chapter0');
+  const directory = path.join(
+    repoRoot,
+    'assets',
+    'resources',
+    'dialogue',
+    'chapter0',
+  );
   return [
     'ch0_intro.json',
     'ch0_room_inspections.json',
@@ -228,7 +234,9 @@ for (const [speaker, portraitId] of Object.entries(expectedPortraits)) {
   for (const node of speakerNodes) {
     assert.equal(node.portrait, portraitId, `${node.id} should use ${portraitId}`);
   }
-  assertPng(`assets/images/chapter0/characters/${portraitId}.png`);
+  assertPng(
+    `assets/resources/images/chapter0/characters/${portraitId}.png`,
+  );
 }
 
 const backgroundIds = new Set(
@@ -245,7 +253,9 @@ assert.deepEqual(
   ],
 );
 for (const backgroundId of backgroundIds) {
-  assertPng(`assets/images/chapter0/backgrounds/${backgroundId}.png`);
+  assertPng(
+    `assets/resources/images/chapter0/backgrounds/${backgroundId}.png`,
+  );
 }
 
 const aiSpeakers = ['Logic', 'Empathy', 'Scepticism', 'Memory', 'Conscience'];

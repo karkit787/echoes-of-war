@@ -44,6 +44,20 @@ export class BackgroundSwitcher extends Component {
     this.setOpacity(this.hiddenSprite, 0);
   }
 
+  public replaceBackgrounds(
+    backgrounds: readonly {
+      assetId: string;
+      spriteFrame: SpriteFrame;
+    }[],
+  ): void {
+    this.backgrounds = backgrounds.map((background) => {
+      const entry = new BackgroundEntry();
+      entry.assetId = background.assetId;
+      entry.spriteFrame = background.spriteFrame;
+      return entry;
+    });
+  }
+
   public show(assetId: string, immediate = false): boolean {
     if (!assetId || assetId === this.currentAssetId) {
       return true;
@@ -101,4 +115,3 @@ export class BackgroundSwitcher extends Component {
     }
   }
 }
-

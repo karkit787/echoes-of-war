@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "chapterId": "chapter0_prologue",
+  "entryNodeId": "ch0_intro_wake_001",
+  "dialogueDocuments": [
+    {
+      "fileId": "ch0_intro",
+      "resource": "dialogue/chapter0/ch0_intro"
+    },
+    {
+      "fileId": "ch0_room_inspections",
+      "resource": "dialogue/chapter0/ch0_room_inspections"
+    },
+    {
+      "fileId": "ch0_flashbacks",
+      "resource": "dialogue/chapter0/ch0_flashbacks"
+    },
+    {
+      "fileId": "ch0_ai_fragments",
+      "resource": "dialogue/chapter0/ch0_ai_fragments"
+    },
+    {
+      "fileId": "ch0_choices",
+      "resource": "dialogue/chapter0/ch0_choices"
+    }
+  ],
+  "backgrounds": [
+    {
+      "assetId": "bg_ch0_abandoned_room",
+      "resource": "images/chapter0/backgrounds/bg_ch0_abandoned_room/spriteFrame"
+    },
+    {
+      "assetId": "bg_ch0_abandoned_corridor",
+      "resource": "images/chapter0/backgrounds/bg_ch0_abandoned_corridor/spriteFrame"
+    },
+    {
+      "assetId": "bg_ch0_time_machine_chamber",
+      "resource": "images/chapter0/backgrounds/bg_ch0_time_machine_chamber/spriteFrame"
+    },
+    {
+      "assetId": "bg_ch0_destroyed_lab_flashback",
+      "resource": "images/chapter0/backgrounds/bg_ch0_destroyed_lab_flashback/spriteFrame"
+    },
+    {
+      "assetId": "bg_ch0_memory_void",
+      "resource": "images/chapter0/backgrounds/bg_ch0_memory_void/spriteFrame"
+    }
+  ],
+  "speakers": [
+    {
+      "speaker": "Narration",
+      "displayName": "Narration",
+      "accent": "#777B80FF"
+    },
+    {
+      "speaker": "Player",
+      "displayName": "Trainee Historian",
+      "accent": "#9AA0A5FF",
+      "portraitAssetId": "char_ch0_main_trainee_historian_portrait",
+      "portraitResource": "images/chapter0/characters/char_ch0_main_trainee_historian_portrait/spriteFrame"
+    },
+    {
+      "speaker": "Logic",
+      "displayName": "Logic",
+      "accent": "#7891A6FF",
+      "portraitAssetId": "char_ch0_ai_logic_portrait",
+      "portraitResource": "images/chapter0/characters/char_ch0_ai_logic_portrait/spriteFrame"
+    },
+    {
+      "speaker": "Empathy",
+      "displayName": "Empathy",
+      "accent": "#8F799BFF",
+      "portraitAssetId": "char_ch0_ai_empathy_portrait",
+      "portraitResource": "images/chapter0/characters/char_ch0_ai_empathy_portrait/spriteFrame"
+    },
+    {
+      "speaker": "Scepticism",
+      "displayName": "Scepticism",
+      "accent": "#4E506FFF",
+      "portraitAssetId": "char_ch0_ai_scepticism_portrait",
+      "portraitResource": "images/chapter0/characters/char_ch0_ai_scepticism_portrait/spriteFrame"
+    },
+    {
+      "speaker": "Memory",
+      "displayName": "Memory",
+      "accent": "#697F8FFF",
+      "portraitAssetId": "char_ch0_ai_memory_portrait",
+      "portraitResource": "images/chapter0/characters/char_ch0_ai_memory_portrait/spriteFrame"
+    },
+    {
+      "speaker": "Conscience",
+      "displayName": "Conscience",
+      "accent": "#A18E64FF",
+      "portraitAssetId": "char_ch0_ai_conscience_portrait",
+      "portraitResource": "images/chapter0/characters/char_ch0_ai_conscience_portrait/spriteFrame"
+    },
+    {
+      "speaker": "System",
+      "displayName": "Objective",
+      "accent": "#8D846EFF"
+    }
+  ]
+}

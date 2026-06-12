@@ -7,7 +7,7 @@ $ErrorActionPreference = "Stop"
 $repoRoot = [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot "..\.."))
 
 if ([string]::IsNullOrWhiteSpace($DialogueDirectory)) {
-    $DialogueDirectory = Join-Path $repoRoot "assets\dialogue\chapter0"
+    $DialogueDirectory = Join-Path $repoRoot "assets\resources\dialogue\chapter0"
 }
 
 $DialogueDirectory = [System.IO.Path]::GetFullPath($DialogueDirectory)
@@ -60,7 +60,69 @@ foreach ($expectedFile in $expectedFiles) {
     }
 }
 
-$jsonFiles = @(Get-ChildItem -LiteralPath $DialogueDirectory -Filter "*.json" -File | Sort-Object Name)
+$jsonFiles = @(
+    foreach ($expectedFile in $expectedFiles) {
+        $expectedPath = Join-Path $DialogueDirectory $expectedFile
+        if (Test-Path -LiteralPath $expectedPath -PathType Leaf) {
+            Get-Item -LiteralPath $expectedPath
+        }
+    }
+)
+
+$manifestPath = Join-Path $DialogueDirectory "ch0_manifest.json"
+if (-not (Test-Path -LiteralPath $manifestPath -PathType Leaf)) {
+    $errors.Add("Missing Chapter 0 manifest: ch0_manifest.json")
+}
+else {
+    try {
+        $manifest = Get-Content -LiteralPath $manifestPath -Raw | ConvertFrom-Json
+        if ($manifest.schemaVersion -ne 1) {
+            $errors.Add("ch0_manifest.json must declare schemaVersion 1.")
+        }
+        $manifestFileIds = @($manifest.dialogueDocuments | ForEach-Object { [string]$_.fileId })
+        foreach ($expectedFile in $expectedFiles) {
+            $expectedFileId = [System.IO.Path]::GetFileNameWithoutExtension($expectedFile)
+            if ($manifestFileIds -notcontains $expectedFileId) {
+                $errors.Add("ch0_manifest.json is missing dialogue fileId '$expectedFileId'.")
+            }
+        }
+        foreach ($entry in @($manifest.dialogueDocuments)) {
+            if (-not ([string]$entry.resource).StartsWith("dialogue/chapter0/")) {
+                $errors.Add("Manifest dialogue resource '$($entry.resource)' is outside dialogue/chapter0.")
+            }
+            $resourceFile = Join-Path $repoRoot ("assets\resources\" + ([string]$entry.resource).Replace("/", "\") + ".json")
+            if (-not (Test-Path -LiteralPath $resourceFile -PathType Leaf)) {
+                $errors.Add("Manifest dialogue resource '$($entry.resource)' does not resolve.")
+            }
+        }
+        foreach ($entry in @($manifest.backgrounds)) {
+            if (-not ([string]$entry.resource).StartsWith("images/chapter0/backgrounds/")) {
+                $errors.Add("Manifest background resource '$($entry.resource)' is outside images/chapter0/backgrounds.")
+            }
+            $imageResource = ([string]$entry.resource) -replace "/spriteFrame$", ""
+            $resourceFile = Join-Path $repoRoot ("assets\resources\" + $imageResource.Replace("/", "\") + ".png")
+            if (-not (Test-Path -LiteralPath $resourceFile -PathType Leaf)) {
+                $errors.Add("Manifest background resource '$($entry.resource)' does not resolve.")
+            }
+        }
+        foreach ($speaker in @($manifest.speakers)) {
+            if ($speaker.portraitResource -and
+                -not ([string]$speaker.portraitResource).StartsWith("images/chapter0/characters/")) {
+                $errors.Add("Manifest portrait resource '$($speaker.portraitResource)' is outside images/chapter0/characters.")
+            }
+            if ($speaker.portraitResource) {
+                $imageResource = ([string]$speaker.portraitResource) -replace "/spriteFrame$", ""
+                $resourceFile = Join-Path $repoRoot ("assets\resources\" + $imageResource.Replace("/", "\") + ".png")
+                if (-not (Test-Path -LiteralPath $resourceFile -PathType Leaf)) {
+                    $errors.Add("Manifest portrait resource '$($speaker.portraitResource)' does not resolve.")
+                }
+            }
+        }
+    }
+    catch {
+        $errors.Add("Invalid JSON in ch0_manifest.json: $($_.Exception.Message)")
+    }
+}
 
 foreach ($file in $jsonFiles) {
     try {
@@ -171,7 +233,7 @@ foreach ($record in $allNodes) {
 
     if ($node.PSObject.Properties.Name -contains "portrait") {
         $portraitId = [string]$node.portrait
-        $portraitPath = Join-Path $repoRoot "assets\images\chapter0\characters\$portraitId.png"
+        $portraitPath = Join-Path $repoRoot "assets\resources\images\chapter0\characters\$portraitId.png"
         if (-not (Test-Path -LiteralPath $portraitPath -PathType Leaf)) {
             $errors.Add("Node '$($record.Id)' references missing portrait '$portraitId'.")
         }
@@ -179,7 +241,7 @@ foreach ($record in $allNodes) {
 
     if ($node.PSObject.Properties.Name -contains "background") {
         $backgroundId = [string]$node.background
-        $backgroundPath = Join-Path $repoRoot "assets\images\chapter0\backgrounds\$backgroundId.png"
+        $backgroundPath = Join-Path $repoRoot "assets\resources\images\chapter0\backgrounds\$backgroundId.png"
         if (-not (Test-Path -LiteralPath $backgroundPath -PathType Leaf)) {
             $errors.Add("Node '$($record.Id)' references missing background '$backgroundId'.")
         }

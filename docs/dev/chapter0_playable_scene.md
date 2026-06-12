@@ -1,18 +1,21 @@
 # Chapter 0 Playable Scene
 
+> Superseded by `docs/dev/chapter0_cocos_scene_setup.md` for the initialized
+> Cocos Creator project and manifest-driven resources layout.
+
 ## Implementation Status
 
 The complete Chapter 0 vertical-slice logic and Cocos components are
 implemented. An automated playthrough completes the authored chapter from
 wake-up to the timeline-instability warning.
 
-The repository is still not initialized by Cocos Creator. It has no
-`project.json`, editor settings, `.meta` files, asset UUIDs, or serialized
-`.scene`/`.prefab` format. For that reason, this implementation does not
-fabricate editor-owned scene JSON. The components below become playable after
-creating one blank Cocos scene and assigning the existing assets in the editor.
+The repository is now initialized by Cocos Creator 3.8.8 and has imported
+asset metadata and UUIDs. `assets/scenes/Chapter0.scene` is a serialized shell
+with the default Canvas and Camera, but it has no gameplay bindings or prefab.
+The components below become playable after building out that scene and
+assigning the existing assets in the editor.
 
-Target API: Cocos Creator 3.8-compatible TypeScript.
+Target API: Cocos Creator 3.8.8 TypeScript.
 
 ## Implemented Systems
 
@@ -91,10 +94,9 @@ other objects are inspected. Inspected objects disappear from hotspot mode.
 
 ## Required Cocos Scene
 
-After the Cocos version is confirmed and the repository is opened as a Cocos
-project, create:
+Open the existing Cocos-authored scene shell:
 
-`assets/scenes/Chapter0Prologue.scene`
+`assets/scenes/Chapter0.scene`
 
 Recommended hierarchy:
 

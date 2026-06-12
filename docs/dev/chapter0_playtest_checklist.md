@@ -1,5 +1,8 @@
 # Chapter 0 Playtest Checklist
 
+> Use `docs/dev/chapter0_cocos_scene_setup.md` for current hierarchy and
+> Inspector paths before running this checklist.
+
 ## Automated QA
 
 Run from the repository root:
@@ -30,18 +33,18 @@ Current automated result: **PASS**
 
 ## Editor Prerequisites
 
-These items cannot be checked until Cocos Creator initializes the repository:
+Current Cocos editor setup:
 
-- [ ] Confirm the exact Cocos Creator 3.x version.
-- [ ] Open or initialize the repository as a Cocos Creator project.
-- [ ] Allow Cocos to generate `.meta` files and stable asset UUIDs.
-- [ ] Create and save `assets/scenes/Chapter0Prologue.scene`.
+- [x] Confirm Cocos Creator 3.8.8.
+- [x] Open or initialize the repository as a Cocos Creator project.
+- [x] Allow Cocos to generate `.meta` files and stable asset UUIDs.
+- [x] Create and save the initial `assets/scenes/Chapter0.scene` shell.
 - [ ] Bind the scene according to `docs/dev/chapter0_playable_scene.md`.
-- [ ] Add `Chapter0Prologue.scene` to the build/start scene list.
+- [ ] Add `Chapter0.scene` to the build/start scene list.
 
 ## Start Scene
 
-- [ ] Launch `Chapter0Prologue.scene` without console errors.
+- [ ] Launch `Chapter0.scene` without console errors.
 - [ ] Confirm the abandoned-room background appears.
 - [ ] Confirm the screen begins black and fades in.
 - [ ] Confirm the opening entry is `ch0_intro_wake_001`.
@@ -133,11 +136,11 @@ Enter investigation mode and verify each hotspot:
 
 ## Known Issues
 
-- The repository is not yet an initialized Cocos Creator project. There is no
-  build command, project manifest, serialized scene, prefab, or imported asset
-  metadata, so an editor/device launch has not been run.
-- Cocos TypeScript compilation cannot run until the editor supplies the `cc`
-  module and project configuration.
+- The repository is initialized as a Cocos Creator 3.8.8 project and contains
+  an unbound `Chapter0.scene` shell. A gameplay editor/device launch has not
+  been run.
+- Cocos TypeScript compilation uses the editor-generated project declarations
+  under `temp/`; reopen the project if those declarations are missing.
 - Runtime hotspot positions are provisional normalized coordinates and need
   visual adjustment after the background is imported into a real Canvas.
 - The portrait and background source PNGs total roughly 29 MB. Runtime texture
@@ -147,4 +150,3 @@ Enter investigation mode and verify each hotspot:
   this Chapter 0 vertical slice.
 - Node's test-only TypeScript stripping prints an experimental warning. This
   does not affect game runtime code.
-

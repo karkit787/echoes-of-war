@@ -96,21 +96,21 @@ file and no non-empty folder was deleted.
   already consistent.
 - No scene, prefab, or Cocos UUID references were changed because none exist
   yet.
-- A Cocos build could not be run: the repository has no `project.json`,
-  `package.json`, `tsconfig.json`, `.scene`, `.prefab`, or `.meta` files.
+- At cleanup time, a Cocos build could not be run because the repository had
+  not yet been initialized. It is now a Cocos Creator 3.8.8 project with
+  generated `.meta` files and an initial `Chapter0.scene` shell; no gameplay
+  bindings or `.prefab` have been serialized yet.
 
 ## Remaining Risks
 
-The TypeScript and data layer is internally consistent, but the repository is
-not yet an initialized, editor-launchable Cocos Creator project. Actual scene
-binding, asset import settings, generated `.meta` files, and WeChat build
-output therefore remain unverified.
+The TypeScript and data layer is internally consistent and the repository is
+now editor-launchable. Actual gameplay scene binding, visual preview, and
+WeChat build output remain unverified.
 
 ## Manual Follow-Up
 
-1. Open or initialize the repository root as a Cocos Creator 3.x project.
-2. Let Cocos import `assets/` and generate `.meta` files before making further
-   structural moves.
+1. Open the repository root with Cocos Creator 3.8.x.
+2. Preserve the imported `.meta` files during any future structural moves.
 3. Create the Chapter 0 scene/prefab bindings described in
    `docs/dev/chapter0_playable_scene.md`.
 4. Run a Cocos web preview, then configure and run the WeChat Mini Game build.

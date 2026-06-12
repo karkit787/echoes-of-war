@@ -68,7 +68,7 @@ export const CHAPTER0_INTERACTABLES: readonly Chapter0InteractableDefinition[] =
     },
     {
       id: 'exit_corridor',
-      displayName: 'Exit to corridor',
+      displayName: 'Exit door',
       targetNodeId: 'ch0_choice_trust_memory',
     },
   ];

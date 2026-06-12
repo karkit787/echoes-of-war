@@ -18,8 +18,8 @@ export interface NormalizedHotspotRect {
   height: number;
 }
 
-@ccclass('InteractableObject')
-export class InteractableObject extends Component {
+@ccclass('Chapter0Interactable')
+export class Chapter0Interactable extends Component {
   @property
   public interactableId = '';
 

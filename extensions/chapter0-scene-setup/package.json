@@ -1,0 +1,36 @@
+{
+  "package_version": 2,
+  "version": "1.0.0",
+  "name": "chapter0-scene-setup",
+  "description": "Build and validate the Echoes of War Chapter 0 scene.",
+  "main": "./dist/main.js",
+  "contributions": {
+    "scene": {
+      "script": "./dist/scene.js"
+    },
+    "menu": [
+      {
+        "path": "Echoes of War/Chapter 0",
+        "label": "Build and Bind Chapter0.scene",
+        "message": "build-chapter0-scene"
+      },
+      {
+        "path": "Echoes of War/Chapter 0",
+        "label": "Validate Chapter0.scene",
+        "message": "validate-chapter0-scene"
+      }
+    ],
+    "messages": {
+      "build-chapter0-scene": {
+        "methods": [
+          "buildChapter0Scene"
+        ]
+      },
+      "validate-chapter0-scene": {
+        "methods": [
+          "validateChapter0Scene"
+        ]
+      }
+    }
+  }
+}

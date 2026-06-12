@@ -26,11 +26,19 @@ curriculum material to Cocos Creator code.
 - `assets/scenes/` contains Cocos Creator scenes.
 - `assets/scripts/` contains TypeScript grouped by system responsibility.
 - `assets/prefabs/` contains reusable Cocos nodes and UI prefabs.
-- `assets/dialogue/` contains validated runtime dialogue JSON.
-- `assets/images/`, `assets/ui/`, `assets/audio/`, and `assets/fonts/` contain
-  presentation assets intended for the shipped build.
-- `assets/resources/` is reserved for assets loaded dynamically through Cocos
-  `resources.load`; do not duplicate ordinary runtime files there.
+- `assets/resources/dialogue/chapter0/` contains the Chapter 0 manifest and
+  validated runtime dialogue JSON.
+- `assets/resources/images/chapter0/` contains dynamically loaded backgrounds,
+  portraits, props, and Chapter 0 UI artwork.
+- `assets/audio/` and `assets/fonts/` contain other presentation assets
+  intended for the shipped build.
+- `assets/resources/` is the runtime source of truth for Chapter 0 assets
+  loaded by string through Cocos `resources.load`.
+
+Cocos-generated `.meta` files are part of the source project and must travel
+with their matching assets. Generated working/output folders such as
+`library/`, `temp/`, `local/`, and `build/` are ignored and must not be
+committed.
 
 ## Authored learning content
 

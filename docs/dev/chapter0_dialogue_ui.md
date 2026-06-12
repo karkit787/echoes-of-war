@@ -1,13 +1,18 @@
 # Chapter 0 Dialogue UI
 
+> Runtime resource paths and current scene binding instructions are maintained
+> in `docs/dev/chapter0_cocos_scene_setup.md`.
+
 ## Status
 
 The reusable dialogue runtime and Cocos Creator components are implemented.
-The repository is still not an initialized Cocos Creator project, so no
-editor-owned `.scene`, `.prefab`, `.meta`, or UUID references were fabricated.
+The repository is now an initialized Cocos Creator 3.8.8 project with imported
+asset metadata and a `Chapter0.scene` shell. No dialogue prefab or scene
+bindings have been serialized yet.
 
-Current implementation target: **Cocos Creator 3.8-compatible TypeScript**.
-Confirm the exact engine version before creating and committing the prefab.
+Current implementation target: **Cocos Creator 3.8.8 TypeScript**.
+Create and commit the prefab through the Cocos editor so UUID references remain
+valid.
 
 ## Implemented Files
 

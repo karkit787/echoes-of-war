@@ -10,14 +10,15 @@ $requiredFiles = @(
     "assets\scripts\dialogue\DialogueManager.ts",
     "assets\scripts\ui\DialogueTheme.ts",
     "assets\scripts\ui\DialoguePortrait.ts",
+    "assets\scripts\ui\DialogueChoiceButton.ts",
     "assets\scripts\ui\DialogueChoiceList.ts",
     "assets\scripts\ui\DialogueHistoryPanel.ts",
     "assets\scripts\ui\DialogueBox.ts",
     "assets\scripts\ui\DialogueDemo.ts",
     "assets\resources\ui\dialogue\dialogue_theme.json",
     "assets\resources\ui\dialogue\dialogue_ui_demo.json",
-    "assets\ui\dialogue\dialogue_panel_rough.svg",
-    "assets\ui\dialogue\dialogue_choice_rough.svg",
+    "assets\resources\images\chapter0\ui\dialogue_panel_rough.svg",
+    "assets\resources\images\chapter0\ui\dialogue_choice_rough.svg",
     "tests\dialogue\dialogue_manager.test.mjs",
     "docs\dev\chapter0_dialogue_ui.md"
 )
